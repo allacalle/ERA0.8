@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ERA</string>
+    <string name="Bienvenida">Bienvenido a ERA (Emergency Assistance) una aplicación que le ayudara con sus formulas mas utilizadas. Para el correcto uso de la aplicación pulse en el botón siguiente. En las siguientes pantalla se la explicará como configurar y utilizar ERA. </string>
+    <string name="PantallaUno">Bienvenido de nuevo a ERA. Con esta aplicación podrá resolver de forma rápida formulas como Child-Pugh o TIMI.</string>
+    <string name="title_activity_bienvenida">Bienvenidoooo </string>
+    <string name="PantallaDos"> Pero antes de empezar a utilizar sus formulas debemos realizar algunos pasos para que el uso de la aplicación se lo mas cómodo  posible para usted. </string>
+    <string name="PantallaTres"> ERA utiliza un sistema de prioridades para encontrar sus formulas mas utilizadas de manera cómoda. El sistema es similar al semáforo de prioridades utilizado en Urgencia que utiliza los colores Rojo, Amarillo y Verde.</string>
+    <string name="PantallaCuatro"> Para poder personalizar ERA deberá realizar una encuesta. En esta encuesta deberá asignar una prioridad a cada una de las formulas de la aplicación. Después de completarla tendrá ERA configurada a su gusto y recuerde que puede cambiar esta Configuración en cualquier momento desde el botón Configuración.  </string>
+</resources>
