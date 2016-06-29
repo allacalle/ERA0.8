@@ -35,9 +35,11 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:text="Atras"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
         <Button
@@ -46,10 +48,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
             android:layout_weight="1"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:text="Siguiente"
             android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
 
@@ -62,6 +66,8 @@
         android:layout_height="wrap_content"
         android:background="#91F8F9"
         android:orientation="vertical"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
         android:gravity="center" >
@@ -69,12 +75,14 @@
         <TextView android:id="@+id/LblEtiqueta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/PantallaUno"
+            android:text="@string/PantallaTres"
             android:background="#D5F8F8"
             android:textSize="20sp"
             android:shadowDx="3"
             android:shadowDy="2"
             android:gravity="center"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:layout_margin="30sp"
             android:typeface="monospace"/>
 

@@ -2,6 +2,7 @@ package com.example.alfonso.era04b;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -77,8 +78,7 @@ public class AyudaFormula extends AppCompatActivity {
             //Primero le creamos una caja de texto
             layoutDeParametro.setBackgroundResource(R.drawable.customborder2);
             TextView nombreDeParametro = new TextView(this);
-            //nombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
-
+            nombreDeParametro.setTypeface(null, Typeface.BOLD);
             if (formulaActual.getParametro(i).getMedida() != null)
                 nombreDeParametro.setText("" +formulaActual.getParametro(i).getNombre()+ "(" +formulaActual.getParametro(i).getMedida()+ ")." );
             else
@@ -91,15 +91,24 @@ public class AyudaFormula extends AppCompatActivity {
             if (formulaActual.getParametro(i).getValorMaximo() != formulaActual.getParametro(i).getValorMinimo()) {
 
                 TextView TxtValorMinimo = new TextView(this);
-                String StrValorMinimo = "" + formulaActual.getParametro(i).getValorMinimo();
+                //Redondeamos el float, no queremos decimales
+                String StrValorMinimo = "" + Math.round(formulaActual.getParametro(i).getValorMinimo());
                 TxtValorMinimo.setText("Mínimo:" + StrValorMinimo + "\t");
                 TextView TxtValorMaximo = new TextView(this);
-                String StrValorMaximo = "" + formulaActual.getParametro(i).getValorMaximo();
+                String StrValorMaximo = "" + Math.round(formulaActual.getParametro(i).getValorMaximo());
                 TxtValorMaximo.setText("Máximo:" + StrValorMaximo + "");
                 layoutDeParametro.addView(TxtValorMinimo);
                 layoutDeParametro.addView(TxtValorMaximo);
             }
             if (formulaActual.getTipoFormula().equals("escala") ) {
+
+                TextView etiquetaPuntuacion= new TextView(this);
+                etiquetaPuntuacion.setTypeface(null, Typeface.BOLD);
+                etiquetaPuntuacion.setText("Puntuación");
+                etiquetaPuntuacion.setBackgroundResource(R.drawable.customborder3);
+                layoutDeParametro.addView(etiquetaPuntuacion);
+
+
                 for (int j = 0; j < formulaActual.getParametro(i).contarCriterios(); j++) {
                     //Mostramos los criterios de cada parametro con sus puntuaciones
                     LinearLayout layoutDeCriterio = new LinearLayout(this);
@@ -166,6 +175,11 @@ public class AyudaFormula extends AppCompatActivity {
 
             if(formulaActual.getExpresion().equals(""))
             {
+                TextView etiquetaFormula = new TextView(this);
+                etiquetaFormula.setTypeface(null, Typeface.BOLD);
+                etiquetaFormula.setText("Formula");
+                layoutDeExpresion.addView(etiquetaFormula);
+
                 for (int i = 0; i < formulaActual.contarParametros(); i++) {
 
                     //Miramos todos los parametroso
@@ -213,6 +227,7 @@ public class AyudaFormula extends AppCompatActivity {
 
         final Button btnRegresar = new Button(this);
         btnRegresar.setText("Regresar");
+        btnRegresar.setBackgroundResource(R.drawable.seleccion);
         lm.addView(btnRegresar);
 
 

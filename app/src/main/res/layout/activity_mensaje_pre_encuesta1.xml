@@ -35,9 +35,11 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:text="Atras"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textColor="#fff"
-            android:background="@drawable/cuadrado"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
         <Button
@@ -47,9 +49,11 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:text="Siguiente"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textColor="#fff"
-            android:background="@drawable/cuadrado"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
 
@@ -72,6 +76,8 @@
             android:text="@string/PantallaUno"
             android:background="#D5F8F8"
             android:textSize="20sp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:shadowDx="3"
             android:shadowDy="2"
             android:gravity="center"

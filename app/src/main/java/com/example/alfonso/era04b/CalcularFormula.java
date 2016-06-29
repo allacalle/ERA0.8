@@ -5,9 +5,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -78,6 +80,7 @@ public class CalcularFormula extends AppCompatActivity {
         TextView nombreDeFormula = new TextView(this);
         nombreDeFormula.setText(formulaActual.getNombreCompleto());
         nombreDeFormula.setLayoutParams(param);
+        nombreDeFormula.setGravity(Gravity.CENTER_HORIZONTAL);
         Button btnAyuda = new Button(this);
         btnAyuda.setText("Ayuda");
         btnAyuda.setLayoutParams(param);
@@ -109,6 +112,8 @@ public class CalcularFormula extends AppCompatActivity {
             //Primero le creamos una caja de texto
             layoutDeParametro.setBackgroundResource(R.drawable.customborder2);
             TextView nombreDeParametro = new TextView(this);
+            //Ponemos el nombre del parametro en negrita
+            nombreDeParametro.setTypeface(null, Typeface.BOLD);
             //nombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
 
             if (formulaActual.getParametro(i).getMedida() != null)
@@ -174,6 +179,8 @@ public class CalcularFormula extends AppCompatActivity {
 
         final Button btnCalcular = new Button(this);
         btnCalcular.setText("Calcular");
+        btnCalcular.setBackgroundResource(R.drawable.seleccion);
+        btnCalcular.setTextColor(Color.parseColor("#FFFFFF"));
         lm.addView(btnCalcular);
 
 
@@ -299,13 +306,15 @@ public class CalcularFormula extends AppCompatActivity {
                     if (formulaActual.getResultado().getMedida() == null)
                         resultadoFinal = formulaActual.getResultado().getValor() ;
 
-                    else
-                        resultadoFinal = formulaActual.getResultado().getValor() + " " + formulaActual.getResultado().getMedida() ;
-                    //textoResultado.setText(resultadoFinal +  "\n  \n \n ");
+                    else {
+                        resultadoFinal = formulaActual.getResultado().getValor() + " " + formulaActual.getResultado().getMedida();
+                    }
 
 
-                    alertDialog.setMessage(resultadoFinal);
-                    alertDialog.show();
+                    //alertDialog.setMessage(resultadoFinal);
+                    //alertDialog.show();
+                    textoResultado.setText(resultadoFinal);
+
 
 
                 }

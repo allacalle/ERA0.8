@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#FC9"
+        android:background="#C5CAE9"
         android:orientation="horizontal"
         android:gravity="center" >
 
@@ -22,8 +22,8 @@
             android:layout_weight="1"
             android:text="Recientes"
             android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
         <Button
@@ -34,8 +34,8 @@
             android:layout_weight="1"
             android:text="Inicio"
             android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
         <Button
@@ -46,8 +46,8 @@
             android:layout_weight="1"
             android:text="Ayuda"
             android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
 

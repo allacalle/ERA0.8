@@ -2,8 +2,10 @@ package com.example.alfonso.era04b;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -75,6 +77,8 @@ public class AyudaGeneral extends AppCompatActivity {
             //La referencia bibliográfica
             TextView textBibliografia = new TextView(this);
             textBibliografia.setText(cursorAyuda.getString(1));
+            textBibliografia.setTypeface(null, Typeface.ITALIC);
+
             auxTexto.addView(textBibliografia);
             lm.addView(auxTexto);
             cursorAyuda.moveToNext();
@@ -82,6 +86,11 @@ public class AyudaGeneral extends AppCompatActivity {
 
         cursorAyuda.close();
         db.close();
+
+        final Button btnRegresar = new Button(this);
+        btnRegresar.setText("Regresar");
+        btnRegresar.setBackgroundResource(R.drawable.seleccion);
+        lm.addView(btnRegresar);
 
 
 

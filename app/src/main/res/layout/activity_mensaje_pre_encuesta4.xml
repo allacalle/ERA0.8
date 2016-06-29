@@ -36,8 +36,10 @@
             android:layout_weight="1"
             android:text="Atras"
             android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
         <Button
@@ -47,9 +49,11 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:text="Siguiente"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
             />
 
 
@@ -69,9 +73,11 @@
         <TextView android:id="@+id/LblEtiqueta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/PantallaUno"
+            android:text="@string/PantallaCuatro"
             android:background="#D5F8F8"
             android:textSize="20sp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:shadowDx="3"
             android:shadowDy="2"
             android:gravity="center"
