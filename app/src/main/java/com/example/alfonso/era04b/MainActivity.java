@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 prioridadVacia = true;
             }
 
+            /*
+
             c = db.rawQuery(" SELECT  COUNT(*) FROM Formulas  ", null);
             c.moveToFirst();
             nCampos = c.getString(0);
@@ -533,6 +535,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+            */
 
 
 

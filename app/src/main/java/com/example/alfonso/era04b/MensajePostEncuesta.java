@@ -114,6 +114,9 @@ public class MensajePostEncuesta extends AppCompatActivity {
                         new Intent(MensajePostEncuesta.this, Inicio.class);
 
 
+                //Se borran todos elementos de la tabla si existiese
+                db.execSQL("DELETE FROM Prioridad WHERE 1");
+
                 identificadores.moveToFirst();
                 for(int i=0; i < numeroFormulas; i++)
                 {

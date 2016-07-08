@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -32,6 +34,8 @@ public class AyudaFormula extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ayuda_formula);
+        //Activo el boton atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
 
@@ -105,7 +109,7 @@ public class AyudaFormula extends AppCompatActivity {
                 TextView etiquetaPuntuacion= new TextView(this);
                 etiquetaPuntuacion.setTypeface(null, Typeface.BOLD);
                 etiquetaPuntuacion.setText("Puntuación");
-                etiquetaPuntuacion.setBackgroundResource(R.drawable.customborder3);
+                etiquetaPuntuacion.setBackgroundResource(R.drawable.customborder2);
                 layoutDeParametro.addView(etiquetaPuntuacion);
 
 
@@ -243,4 +247,22 @@ public class AyudaFormula extends AppCompatActivity {
 
 
     }
+
+
+    //Botron atrasssssss
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Log.i("ActionBar", "Atrás");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
 }

@@ -451,10 +451,17 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
             switch (getParametro(i).getTipo())
             {
                 case ("numero"):
-                    getParametro(i).setValor(vectorResultados[i]);
-                    if (getTipoFormula().equals("escala"))
-                        getParametro(i).setValor(getParametro(i).evaluarPuntuacion(vectorResultados[i]));
+                    if ( Float.parseFloat(vectorResultados[i]) <= getParametro(i).getValorMaximo() && Float.parseFloat(vectorResultados[i]) >= getParametro(i).getValorMinimo())
+                    {
+                        getParametro(i).setValor(vectorResultados[i]);
+                        if (getTipoFormula().equals("escala"))
+                            getParametro(i).setValor(getParametro(i).evaluarPuntuacion(vectorResultados[i]));
 
+                    }
+                    else
+                    {
+                        return false;
+                    }
                     break;
                 case ("lista"):
                     //Buscamos la posicion del criterio de puntuacion

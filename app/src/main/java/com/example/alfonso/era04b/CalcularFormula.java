@@ -9,7 +9,10 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,6 +31,7 @@ public class CalcularFormula extends AppCompatActivity {
     String cadenaPrueba = "";
     int indiceCampoIncorrecto = 0 ;
     boolean existenCamposEdit = false;
+    String idFormula;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -39,11 +43,13 @@ public class CalcularFormula extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calcular_formula);
+        //Boton atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
         Button BtnRecientes = (Button) findViewById(R.id.BtnRecientes) ;
         Button BtnInicio = (Button) findViewById(R.id.BtnInicio) ;
-        Button BtnAyuda = (Button) findViewById(R.id.BtnAyuda) ;
+        //Button BtnAyuda = (Button) findViewById(R.id.BtnAyuda) ;
 
 
         //Lo primero es capturar la abreviatura de la formula que se nos pasa en un bundle
@@ -51,9 +57,10 @@ public class CalcularFormula extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         //Construimos el mensaje a mostrar
         final String valorRecibido = bundle.getString("IdFormula");
+        idFormula = valorRecibido;
 
         //Se crea una formula con el id que nos han pasado.
-        final Formula formulaActual = new Formula(valorRecibido, getApplicationContext());
+        final Formula formulaActual = new Formula(idFormula, getApplicationContext());
         //Parametro parametro = new Parametro("2" , getApplicationContext());
         //Lista para los editText
         final List<EditText> allEds = new ArrayList<EditText>();
@@ -199,6 +206,7 @@ public class CalcularFormula extends AppCompatActivity {
         lm.addView(textoResultado);
 
 
+
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -296,6 +304,18 @@ public class CalcularFormula extends AppCompatActivity {
                     //Calculamos los resultados.
                     formulaActual.calcularFormula();
 
+                    String resultadoCriterios = "";
+
+                    //Vamos a mostrar los criterios y sus puntuaciones para poder evaluar que funciona correctamente.
+                    //Bucle para recorrer los parametros
+                    for (int i = 0; i < formulaActual.contarParametros(); i++) {
+
+                            resultadoCriterios = resultadoCriterios + formulaActual.getParametro(i).getNombre() + ":" + formulaActual.getParametro(i).getValor() + "\n" ;
+
+                        }
+
+
+
                     //Agregamos la formula a recientes
                     //Esta funcion no debe tener parametros salvo el context????
                     formulaActual.introducirRecientes(formulaActual.getIdFormula() , formulaActual.getResultado().getValor(), getApplicationContext());
@@ -303,17 +323,21 @@ public class CalcularFormula extends AppCompatActivity {
 
                     String resultadoFinal ="";
 
+
                     if (formulaActual.getResultado().getMedida() == null)
                         resultadoFinal = formulaActual.getResultado().getValor() ;
 
                     else {
                         resultadoFinal = formulaActual.getResultado().getValor() + " " + formulaActual.getResultado().getMedida();
-                    }
+
+                        }
 
 
                     //alertDialog.setMessage(resultadoFinal);
                     //alertDialog.show();
-                    textoResultado.setText(resultadoFinal);
+                    textoResultado.setText(resultadoCriterios);
+                    //textoResultado.setText(resultadoFinal);
+
 
 
 
@@ -324,6 +348,7 @@ public class CalcularFormula extends AppCompatActivity {
             }
         });
 
+        /*
 
         assert BtnAyuda != null;
 
@@ -348,6 +373,8 @@ public class CalcularFormula extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        */
 
         assert BtnRecientes != null;
 
@@ -391,6 +418,46 @@ public class CalcularFormula extends AppCompatActivity {
     public boolean isNumeric(String str) {
         return str.matches("^-?[0-9]+([,\\.][0-9]+)?$");
     }
+
+    //Botron atrasssssss
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Log.i("ActionBar", "Atrás");
+                finish();
+                return true;
+            case R.id.error:
+                //metodoSearch()
+                //info.setText("Se presionó Buscar");
+                return true;
+            case R.id.ayuda:
+                Intent intent =
+                        new Intent(CalcularFormula.this, AyudaFormula.class);
+                Bundle b = new Bundle();
+
+                //Vamos a pasar el identificador de la formula que es un campo unico .
+                b.putString("IdFormula", idFormula );
+                //Añadimos la información al intent
+                intent.putExtras(b);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.calcular, menu);
+        return true;
+    }
+
 
 
 }

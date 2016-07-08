@@ -8,6 +8,9 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,6 +23,8 @@ public class FormulasPrioridad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulas_prioridad);
+        //Boton atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //Recuperamos la información pasada en el intent
         Bundle bundle = this.getIntent().getExtras();
         //Construimos el mensaje a mostrar
@@ -159,6 +164,26 @@ public class FormulasPrioridad extends AppCompatActivity {
 
     }
 
+    //Botron atrasssssss
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Log.i("ActionBar", "Atrás");
+                finish();
+                return true;
+            case R.id.busqueda:
+                //metodoSearch()
+                //info.setText("Se presionó Buscar");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
     //Esta es una pagina filstrada que mostrara una lista de todas las formulas cuya prioridad es Alta
 
     //Sera una lista de botones que al pulsarlo te llevaran a la formula en si, la pantalla debe ser intuitiva y sin muchas
@@ -175,7 +200,11 @@ public class FormulasPrioridad extends AppCompatActivity {
 
     //Al pulsar en el boton nos llevara a la formula cuyo nombre tiene (el identificador del boton deberia ser el IdFormula
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.prioridad, menu);
+        return true;
+    }
 
 
 

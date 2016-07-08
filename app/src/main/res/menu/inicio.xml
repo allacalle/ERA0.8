@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Main">
+    <item android:id="@+id/configuracion"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/configuraci_n"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/busqueda"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/busqueda"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/error"
+        android:title="@string/reportar_error"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:orderInCategory="3"
+        app:showAsAction="ifRoom"/>
+
+</menu>

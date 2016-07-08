@@ -1,5 +1,6 @@
 package com.example.alfonso.era04b;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,6 +23,8 @@ public class FormulasRecientes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulas_recientes);
+        //Boton de atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
         TextView texto = new TextView(this);
 
@@ -131,6 +136,23 @@ public class FormulasRecientes extends AppCompatActivity {
         db.close();
 
 
+
+
     }
 
+    //Botron atrasssssss
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Log.i("ActionBar", "Atrás");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -132,9 +133,38 @@ public class Inicio extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.inicio, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.error:
+                //metodoAdd()
+                //info.setText("Se presionó Añadir");
+                return true;
+            case R.id.busqueda:
+                //metodoSearch()
+                //info.setText("Se presionó Buscar");
+                return true;
+            case R.id.configuracion:
+                Intent intent =
+                        new Intent(Inicio.this, MensajeCambiarConfiguracion.class);
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+                //metodoEdit()
+                //info.setText("Se presionó Editar");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
+
 
 
 
