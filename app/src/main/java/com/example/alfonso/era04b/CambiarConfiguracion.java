@@ -1,5 +1,7 @@
 package com.example.alfonso.era04b;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
@@ -29,7 +32,7 @@ public class CambiarConfiguracion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cambiar_configuracion);
+        setContentView(R.layout.activity_encuesta);
 
         /*Esta pantalla debe ser muy parecida a la pantalla de encuesta aqui se debe mostrar
 
@@ -51,13 +54,33 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
 
         //Hacer una consulta para coger todas las formulas de la base de datos.
-        Cursor abreviatura = db.rawQuery(" SELECT  Abreviatura FROM Formulas", null);
+        //Cursor abreviatura = db.rawQuery(" SELECT  Abreviatura FROM Formulas", null);
+        Cursor abreviatura = db.rawQuery(" SELECT F.Abreviatura, P.Tipo  FROM Formulas F,Prioridad P WHERE F.IdFormula = P.IdFormula ", null);
+
+
+
         final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
 
         //Se crea un parametro auxiliar para cuestiones de diseño con el TextView y el EditText
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
+
+        //Creamos otro parametro para el formato del texto de las columnas
+
+        LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT, 2.5f);
+
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
+        alertDialog.setButton("Continuar..", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // here you can add functions
+            }
+        });
+
 
         //Contamos el numero de formulas
         int numeroFormulas;
@@ -74,30 +97,42 @@ public class CambiarConfiguracion extends AppCompatActivity {
         auxCabecera.setBackgroundResource(R.drawable.customborder);
 
 
-        TextView textCabecera = new TextView(this);
-        textCabecera.setText("Formulas");
-        textCabecera.setLayoutParams(param);
+        TextView textCabecera1 = new TextView(this);
+        textCabecera1.setText("Formulas");
+        textCabecera1.setLayoutParams(param);
+
+        TextView textCabecera2 = new TextView(this);
+        textCabecera2.setText("Prioridad");
+        textCabecera2.setLayoutParams(param2);
 
         //TextView textPrioridad = new TextView(this);
         //textPrioridad.setText("Prioridades");
 
         //textPrioridad.setTypeface(null, Typeface.BOLD);
-        textCabecera.setTypeface(null, Typeface.BOLD);
+        textCabecera1.setTypeface(null, Typeface.BOLD);
+        textCabecera2.setTypeface(null, Typeface.BOLD);
 
 
-        auxCabecera.addView(textCabecera);
+
+        auxCabecera.addView(textCabecera1);
+        auxCabecera.addView(textCabecera2);
         //auxCabecera.addView(textPrioridad);
 
 
         lm.addView(auxCabecera);
 
+        //queremos que se marquen los botones que fueron seleccionados la ultima vez.!!!
 
+        //Debemos abrir la base de datos y hacer una consulta
 
 
 
 
         for(int i=0;i< numeroFormulas; i++)
         {
+            //Creamos una cadena para indicar que prioridad tiene la formula en esta posición
+            String TipoPrioridad = "";
+
             //Creamos un linear layout auxiliar donde iremos introduciendo los elementos que queremos mostrar
             LinearLayout auxTexto = new LinearLayout(this);
             auxTexto.setOrientation(LinearLayout.HORIZONTAL);
@@ -106,6 +141,9 @@ public class CambiarConfiguracion extends AppCompatActivity {
             TextView text1 = new TextView(this);
             text1.setText(abreviatura.getString(0));
             text1.setLayoutParams(param);
+            //Capturamos el tipo de prioridad.
+            TipoPrioridad = abreviatura.getString(1);
+
             abreviatura.moveToNext();
             text1.setTypeface(null, Typeface.BOLD);
             auxTexto.addView(text1);
@@ -130,6 +168,22 @@ public class CambiarConfiguracion extends AppCompatActivity {
             //Asignamos color e id a la Baja
             Baja.setBackgroundColor(Color.parseColor("#CCFF90"));
             Baja.setId(j + 2);
+
+            //Rellenamos los botones con el valor anterior segun el tipo de prioridad
+            switch(TipoPrioridad)
+            {
+                case "Alta":
+                    Alta.setChecked(true);
+                    break;
+                case "Media":
+                    Media.setChecked(true);
+                    break;
+                case "Baja":
+                    Baja.setChecked(true);
+                    break;
+            }
+
+
             urgencia.addView(Alta);
             urgencia.addView(Media);
             urgencia.addView(Baja);
@@ -141,15 +195,17 @@ public class CambiarConfiguracion extends AppCompatActivity {
             j = j +3;
         }
 
+        //queremos que se marquen los botones que fueron seleccionados la ultima vez.!!!
+
+        //Debemos
+
+
         //Creamos un vector de String con los valores Alto,Medio,Bajo cada posicion del vector coincidira con
         // la id de los botones creados, asi sera muy facil tomar su valor.
 
         final String vectorPrioridad [] = new String[numeroFormulas*3] ;
 
         j = 0;
-        final TextView resultado = new TextView(this);
-        lm.addView(resultado);
-
 
 
         for (int i =0; i < numeroFormulas ; i++)
@@ -161,6 +217,9 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
 
         }
+
+
+
 
 
         final Button btnAceptar = new Button(this);
@@ -199,7 +258,8 @@ public class CambiarConfiguracion extends AppCompatActivity {
                     if (allRgs.get(i).getCheckedRadioButtonId() == -1) {
                         cadena = " Por favor debe rellenar todas las posibles opciones antes de continuar ";
                         noseleccionado = true;
-                        resultado.setText(cadena);
+                        alertDialog.setMessage(cadena);
+                        alertDialog.show();
                     }
                 }
 
@@ -212,28 +272,28 @@ public class CambiarConfiguracion extends AppCompatActivity {
                         cadena = cadena + "Formula" + (i + 1) + ": Valor:" + vectorPrioridad[allRgs.get(i).getCheckedRadioButtonId()] + "\n";
                         //Ahora mismo se coge asi porque estan en orden, si ese orden se cambiase habra que crear un vector con los valores de la id en cada posicion
                         //db.execSQL("INSERT INTO Prioridad (IdPrioridad,IdFormula,Tipo)  VALUES ('" + (i + 1) + "','" + (i + 1) + "','" + vectorPrioridad[allRgs.get(i).getCheckedRadioButtonId()] + "');");
-                        cadenaResultado = cadenaResultado +  vectorPrioridad[allRgs.get(i).getCheckedRadioButtonId()];
+                        cadenaResultado = cadenaResultado + vectorPrioridad[allRgs.get(i).getCheckedRadioButtonId()];
                         if (i != (allRgs.size() -1) )
                             cadenaResultado = cadenaResultado + "," ;
 
                         //resultado.setText(cadenaResultado);
-
-
-                        //Debemos meter todos estos valores seleccionados en una cadena de texto que analizaremos en ResultadosEncuesta
-                        //resultado.setText(cadena);
-                        Intent intent = new Intent(CambiarConfiguracion.this, MensajePostEncuesta.class);
-
-                        //Creamos la información a pasar entre actividades
-                        Bundle b = new Bundle();
-                        b.putString("NOMBRE", (String) cadenaResultado);
-
-                        //Añadimos la información al intent
-                        intent.putExtras(b);
-
-                        //Iniciamos la nueva actividad
-                        startActivity(intent);
-
                     }
+
+
+                    //Debemos meter todos estos valores seleccionados en una cadena de texto que analizaremos en ResultadosEncuesta
+                    //resultado.setText(cadena);
+                    Intent intent = new Intent(CambiarConfiguracion.this, MensajePostEncuesta.class);
+
+                    //Creamos la información a pasar entre actividades
+                    Bundle b = new Bundle();
+                    b.putString("Resultado", cadenaResultado);
+
+                    //Añadimos la información al intent
+                    intent.putExtras(b);
+
+                    //Iniciamos la nueva actividad
+                    startActivity(intent);
+
                 }
 
 

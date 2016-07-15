@@ -28,33 +28,21 @@
         android:gravity="center"
         android:orientation="horizontal"
         >
-
-
-
-
         <Button
             android:layout_width="0dp"
-            android:id="@+id/BtnOmitir"
-            android:layout_height="wrap_content"
+            android:id="@+id/BtnInicio"
+            android:layout_height="150dp"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:text="Omitir Explicación"
+            android:text="¡Utilizar ERA!"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textColor="#fff"
+            android:textSize="40dp"
             android:background="@drawable/seleccion"
             android:gravity="center"
             />
 
-        <Button
-            android:layout_width="0dp"
-            android:id="@+id/BtnSiguiente"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="Siguiente"
-            android:textColor="#fff"
-            android:background="@drawable/seleccion"
-            android:gravity="center"
-            />
 
 
 
@@ -66,6 +54,8 @@
         android:layout_height="wrap_content"
         android:background="#91F8F9"
         android:orientation="vertical"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
         android:gravity="center" >
@@ -73,13 +63,15 @@
         <TextView android:id="@+id/LblEtiqueta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Bienvenida"
+            android:text="@string/Empezar"
             android:background="#D5F8F8"
             android:textSize="20sp"
             android:shadowDx="3"
             android:shadowDy="2"
-            android:layout_margin="30sp"
             android:gravity="center"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_margin="30sp"
             android:typeface="monospace"/>
 
 

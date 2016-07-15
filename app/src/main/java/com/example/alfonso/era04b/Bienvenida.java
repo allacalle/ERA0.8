@@ -13,6 +13,7 @@ import android.widget.Button;
 public class Bienvenida extends AppCompatActivity {
 
     private Button btnSiguiente;
+    private Button btnOmitir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class Bienvenida extends AppCompatActivity {
 
         //Obtenemos una referencia a los controles de la interfaz
         btnSiguiente = (Button)findViewById(R.id.BtnSiguiente);
+        btnOmitir = (Button) findViewById(R.id.BtnOmitir);
 
 
         //Implementamos el evento click del botón
@@ -36,6 +38,22 @@ public class Bienvenida extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Implementamos el evento click del botón
+        btnOmitir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creamos el Intent
+                Intent intent =
+                        new Intent(Bienvenida.this, Encuesta.class);
+
+
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 }

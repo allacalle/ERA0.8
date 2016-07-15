@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.alfonso.era04b.Clases.Formula;
 
+import org.w3c.dom.Text;
+
 
    /*
        Para cada pagina se debe mostrar
@@ -121,22 +123,29 @@ public class AyudaFormula extends AppCompatActivity {
 
                     TextView TxtCriterio = new TextView(this);
                     TextView TxTPuntuacion = new TextView(this);
+                    TextView TxTPuntuacion2 = new TextView(this);
+
 
                     if(formulaActual.getParametro(i).getTipo().equals("logico"))
                     {
-                        TxTPuntuacion.setText( formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion() );
+                        TxtCriterio.setText("\n" + "Puntos:" + formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion() );
 
                     }
                     else {
 
-                        TxtCriterio.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getCriterio() + "  ");
-                        TxTPuntuacion.setText( formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion() );
-
+                        String cadenaCriterio = cambiarFormatoCriterio(formulaActual.getParametro(i).getCriterioPuntuacion(j).getCriterio(), formulaActual.getParametro(i).getNombre() );
+                        String puntos = "\n Puntos:";
+                        TxtCriterio.setText(cadenaCriterio + puntos + formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
+                        //TxTPuntuacion.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
                     }
 
                     layoutDeCriterio.addView(TxtCriterio);
-                    layoutDeCriterio.addView(TxTPuntuacion);
+                    layoutDeCriterio.setBackgroundResource(R.drawable.customborder3);
+
+                    //layoutDeCriterio.addView(TxTPuntuacion);
+                    //layoutDeCriterio.addView(TxTPuntuacion2);
                     layoutDeParametro.addView(layoutDeCriterio);
+
 
                 }
             }
@@ -263,6 +272,88 @@ public class AyudaFormula extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+
+
+    public String cambiarFormatoCriterio (String original, String nombreParametro)
+    {
+        String cadenaCambiada = "";
+
+        //Lo primero es separar todos los campos de la cadena separados con sus spacios utilizando la funcion split
+
+        String vectorPalabras [] = original.split(" ");
+        int contador = 0;
+
+        //Ahora voy a recorrer los elementos utilizando un bucle cada vez que encuentre una x incremento el contador
+
+        //en este buscle se pretender cambiar los siguientes simbolos por.
+
+        //x --> Primera aparicion: nombreParametro
+
+        //x --> Segunda o posterios aparicion es eliminado  "";
+
+        //&& --> y
+
+        // < --> Menor a
+
+        // > --> Mayor a
+
+        // Menor ó igual a
+
+        //Mayor ó igual a
+
+        // Puntuacion si es 1--> 1 punto.
+
+        //Puntuación si es dipstinto de 1 --> X puntos.
+
+
+        for(int i =0; i < vectorPalabras.length; i++ )
+        {
+         switch (vectorPalabras[i])
+         {
+             case "x" :
+                 if (contador < 1) {
+                     vectorPalabras[i] = nombreParametro;
+                     contador++;
+                 }
+                 else {
+                     vectorPalabras[i] = "";
+                     contador++;
+                 }
+             break;
+
+             case "&&":
+                vectorPalabras[i]= "y";
+             break;
+
+             case "<":
+                 vectorPalabras[i]= "Menor a";
+             break;
+
+             case ">":
+                 vectorPalabras[i]= "Mayor a";
+             break;
+
+             case "<=":
+                 vectorPalabras[i]= "Menor ó igual a";
+             break;
+
+             case ">=":
+                 vectorPalabras[i]= "Mayor ó igual a";
+             break;
+
+
+         }
+        }
+
+        for (String vectorPalabra : vectorPalabras) {
+            cadenaCambiada = cadenaCambiada + " " + vectorPalabra;
+        }
+
+
+
+        return cadenaCambiada;
     }
 
 }

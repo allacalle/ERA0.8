@@ -26,6 +26,25 @@ public class FormulasRecientes extends AppCompatActivity {
         //Boton de atras
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
+        Button BtnInicio = (Button) findViewById(R.id.BtnInicio) ;
+
+        assert BtnInicio != null;
+
+        BtnInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creamos el Intent
+                Intent intent =
+                        new Intent(FormulasRecientes.this, Inicio.class);
+
+
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+
+            }
+        });
+
+
         TextView texto = new TextView(this);
 
 
@@ -128,6 +147,9 @@ public class FormulasRecientes extends AppCompatActivity {
             });
 
 
+
+
+
             //Paso al valor siguiente del cursor
             c.moveToNext();
         }
@@ -155,4 +177,6 @@ public class FormulasRecientes extends AppCompatActivity {
         }
 
     }
+
+
 }

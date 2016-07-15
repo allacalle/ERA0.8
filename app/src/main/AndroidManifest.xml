@@ -23,14 +23,15 @@
         <activity android:name=".FormulasPrioridad" />
         <activity android:name=".FormulasRecientes" />
         <activity android:name=".Inicio" />
-        <activity android:name=".MensajePostEncuesta" />
         <activity android:name=".MensajePreEncuesta1" />
         <activity android:name=".MensajePreEncuesta2" />
         <activity android:name=".MensajePreEncuesta3" />
         <activity android:name=".MensajePreEncuesta4" />
         <activity android:name=".CambiarConfiguracion" />
         <activity android:name=".MensajeCambiarConfiguracion" />
-        <activity android:name=".ValidacionDatos"></activity>
+        <activity android:name=".ValidacionDatos" />
+        <activity android:name=".MensajePostEncuesta" />
+        <activity android:name=".MensajePostEncuesta2"></activity>
     </application>
 
 </manifest>

@@ -195,7 +195,7 @@ public class CalcularFormula extends AppCompatActivity {
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-        alertDialog.setButton("Continue..", new DialogInterface.OnClickListener() {
+        alertDialog.setButton("Continuar..", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // here you can add functions
             }
@@ -275,9 +275,20 @@ public class CalcularFormula extends AppCompatActivity {
                     }
 
                     if (!camposCorrectos) {
-                        alertDialog.setMessage("Error en el parametro " + formulaActual.getParametro(indiceCampoIncorrecto).getNombre());
-                        alertDialog.show();
-                        break;
+
+                        if(formulaActual.getParametro(i).getTipo().equals("numero")) {
+                            alertDialog.setMessage("Error en el parametro " + formulaActual.getParametro(indiceCampoIncorrecto).getNombre() +". Los decimales deben ir separados por un punto.");
+                            alertDialog.show();
+                            break;
+
+                        }
+                        else
+                        {
+                            alertDialog.setMessage("Error en el parametro " + formulaActual.getParametro(indiceCampoIncorrecto).getNombre());
+                            alertDialog.show();
+                            break;
+                        }
+
                     }
 
 
@@ -333,10 +344,10 @@ public class CalcularFormula extends AppCompatActivity {
                         }
 
 
-                    //alertDialog.setMessage(resultadoFinal);
-                    //alertDialog.show();
-                    textoResultado.setText(resultadoCriterios);
-                    //textoResultado.setText(resultadoFinal);
+                    alertDialog.setMessage(resultadoFinal);
+                    alertDialog.show();
+                    //textoResultado.setText(resultadoCriterios);
+                    textoResultado.setText(resultadoFinal);
 
 
 
@@ -416,7 +427,7 @@ public class CalcularFormula extends AppCompatActivity {
 
     // Funcion auxiliar que comprueba si una cadena es un numero. Podria ser interesante tenerlas todas en una misma clase
     public boolean isNumeric(String str) {
-        return str.matches("^-?[0-9]+([,\\.][0-9]+)?$");
+        return str.matches("^-?[0-9]+([.][0-9]+)?$");
     }
 
     //Botron atrasssssss

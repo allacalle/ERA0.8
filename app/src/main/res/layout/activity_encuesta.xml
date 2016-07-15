@@ -14,17 +14,6 @@
         android:orientation="horizontal"
         android:gravity="center" >
 
-        <Button
-            android:layout_width="0dp"
-            android:id="@+id/BtnAtras"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="Atras"
-            android:textColor="#fff"
-            android:background="#3949AB"
-            android:gravity="left"
-            />
 
 
 
