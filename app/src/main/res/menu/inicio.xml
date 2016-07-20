@@ -10,8 +10,9 @@
     <item android:id="@+id/busqueda"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/busqueda"
+        app:actionViewClass="com.example.alfonso.era04b.Clases.ArrayAdapterSearchView"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom|collapseActionView"/>
     <item android:id="@+id/error"
         android:title="@string/reportar_error"
         android:icon="@android:drawable/ic_dialog_email"

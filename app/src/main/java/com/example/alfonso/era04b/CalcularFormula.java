@@ -60,6 +60,7 @@ public class CalcularFormula extends AppCompatActivity {
         idFormula = valorRecibido;
 
         //Se crea una formula con el id que nos han pasado.
+        //Se crea una formula con el id que nos han pasado.
         final Formula formulaActual = new Formula(idFormula, getApplicationContext());
         //Parametro parametro = new Parametro("2" , getApplicationContext());
         //Lista para los editText

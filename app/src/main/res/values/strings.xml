@@ -6,7 +6,7 @@
     <string name="PantallaDos"> Antes de empezar a utilizar sus fórmulas se le explicará como ERa le ayuda a que encuentre sus formulas rapidamente.ERA utiliza un sistema de prioridades para encontrar sus formulas más utilizadas de manera rapida y sencilla. </string>
     <string name="PantallaTres">  El sistema es similar al semáforo de prioridades utilizado en Urgencia que utiliza los colores Rojo, Amarillo y Verde.Una vez configurada ERA podrá acceder por ejemplo a las formulas que usted considere de Alta prioridad pulsando el boton Rojo. </string>
     <string name="PantallaCuatro"> Para  personalizar ERA deberá realizar una encuesta. En esta encuesta deberá asignar una prioridad a cada una de las formulas que se le muestren por pantalla. Al completarla tendrá ERA configurada y recuerde que puede cambiar esta Configuración en cualquier momento desde el botón Configuración.  </string>
-    <string name="mensaje_cambiarConfiguración">ERA le permite cambiar la configuración de sus formulas siempre que lo desee. Para cambiar su configuración pulse en Cambiar Configuración , para volver a la página de inicio pulse en Regesar</string>
+    <string name="mensaje_cambiarConfiguración">ERA le permite cambiar la configuración de sus formulas siempre que lo desee. Para cambiar su configuración pulse en Cambiar Configuración , para volver a la página de inicio pulse en Regresar</string>
     <string name="cambiar_configuracion">Cambiar Configuración</string>
     <string name="regresar">Regresar</string>
     <string name="busqueda">busqueda</string>

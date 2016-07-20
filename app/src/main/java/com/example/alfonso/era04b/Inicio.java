@@ -1,13 +1,24 @@
 package com.example.alfonso.era04b;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.alfonso.era04b.Clases.ArrayAdapterSearchView;
+import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
 
 public class Inicio extends AppCompatActivity {
 
@@ -15,6 +26,12 @@ public class Inicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
+
+        //Prueba boton busqueda.
+
+
+
+
 
         //Buscamos nuestros botones de Alto,Medio, Bajo
 
@@ -27,6 +44,8 @@ public class Inicio extends AppCompatActivity {
 
 
         setTitle("ERA");
+
+
 
 
         //Al pulsar uno de estos botones cargara la actividad listado_formulas con el valor de cada boton. (Alto,Medio,Bajo)
@@ -134,8 +153,96 @@ public class Inicio extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.inicio, menu);
+        MenuItem searchItem = menu.findItem(R.id.busqueda);
+        final ArrayAdapterSearchView searchView = (ArrayAdapterSearchView) MenuItemCompat.getActionView(searchItem);
+
+        //Abrimos la base de datos.
+
+        //Primero se debe abrir la base de datos
+        FormulasSQLiteHelper usdbh =
+                new FormulasSQLiteHelper(this, "DbEra", null, 1);
+
+        final SQLiteDatabase db = usdbh.getReadableDatabase();
+
+        //creamos un cursor con las abreviaturas de las formulas.
+        final Cursor CursorAbreviatura = db.rawQuery(" SELECT  Abreviatura FROM Formulas", null);
+        CursorAbreviatura.moveToFirst();
+
+
+        //Creamos un array de String con la abreviaturas de las formulas
+        String [] ArrayAbreviaturas = new String[CursorAbreviatura.getCount()];
+
+        for(int i=0; i < CursorAbreviatura.getCount(); i++)
+        {
+            ArrayAbreviaturas[i] = CursorAbreviatura.getString(0);
+            CursorAbreviatura.moveToNext();
+        }
+
+        CursorAbreviatura.close();
+
+
+
+        //String[] languages={"Android ","java","IOS","SQL","JDBC","Web services","Androida", "Androito", "Antiestaminico"};
+        //Convertir cadena en adapter.
+        //final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1 ,languages);
+
+        //Converitmos el array de elementos en una lista de las abreviaturas de las formulas
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.simple_list_item_1 ,ArrayAbreviaturas);
+
+
+        searchView.setAdapter(adapter);
+
+
+        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                //Ponemos el texto seleccionado en el searchview
+                //searchView.setText(adapter.getItem(position).toString());
+                String AbreviaturaSeleccionada = adapter.getItem(position).toString();
+
+
+
+                //hacemos una consulta a la bbdd para que nos devuelva la id de la formula con la abreviatura seleccionada.
+                Cursor CursorIdFormula = db.rawQuery(" SELECT  IdFormula FROM Formulas WHERE Abreviatura = '" + AbreviaturaSeleccionada + "' ", null);
+
+
+                //Cremos un nuevo bundle para la actividad pasando la id como parametro IdParametro
+                //Creamos el Intent
+                Intent intent =
+                        new Intent(Inicio.this, CalcularFormula.class);
+
+                //Creamos la información a pasar entre actividades
+                Bundle b = new Bundle();
+                CursorIdFormula.moveToFirst();
+                String cadenaId= "";
+                cadenaId = CursorIdFormula.getString(0) ;
+                //Vamos a pasar el identificador de la formula que es un campo unico .
+                b.putString("IdFormula", cadenaId );
+
+                //Añadimos la información al intent
+                intent.putExtras(b);
+
+                //Cerramos el cursor del id y la base de datos.
+                CursorIdFormula.close();
+                db.close();
+
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+
+                //Iniciamos la actividad calcular formula con la id de la formula seleccionada.
+
+
+            }
+        });
+
         return true;
     }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
