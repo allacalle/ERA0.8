@@ -10,6 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Created by Alfonso on 18/03/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
 public class Bienvenida extends AppCompatActivity {
 
     private Button btnSiguiente;

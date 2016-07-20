@@ -1,5 +1,11 @@
 package com.example.alfonso.era04b;
 
+/**
+ * Created by Alfonso on 08/02/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
 
 import android.content.Intent;
 import android.database.Cursor;

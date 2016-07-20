@@ -24,6 +24,12 @@ import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Alfonso on 20/03/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
 public class CambiarConfiguracion extends AppCompatActivity {
 
     private String cadena = "";

@@ -1,14 +1,11 @@
 package com.example.alfonso.era04b;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +16,12 @@ import android.widget.ImageButton;
 
 import com.example.alfonso.era04b.Clases.ArrayAdapterSearchView;
 import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
+
+/**
+ * Created by Alfonso on 18/03/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
 
 public class Inicio extends AppCompatActivity {
 
@@ -251,6 +254,17 @@ public class Inicio extends AppCompatActivity {
             case R.id.error:
                 //metodoAdd()
                 //info.setText("Se presionó Añadir");
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"eracontacto@yopmail.com"});
+                emailIntent.putExtra(Intent.EXTRA_CC, new String[]{"eracontacto@yopmail.com"});
+                //emailIntent.putExtra(Intent.EXTRA_BCC, new String[]{"email3@ekiketa.es"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Reporte de Error Genérico");
+                //Recordad que la barra invertida más "n" es un salto de linea "n" así, escribiremos el email con varios saltos de linea.
+                //String textoApp = "Envio un email desde mi App de android";
+                //emailIntent.putExtra(Intent.EXTRA_TEXT, "Probando , Probando");
+                emailIntent.setType("message/rfc822");
+                //Damos la opción al usuario que elija desde que app enviamos el email.
+                startActivity(Intent.createChooser(emailIntent, "Selecciona aplicación..."));
                 return true;
             case R.id.busqueda:
                 //metodoSearch()

@@ -5,11 +5,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
+
+/**
+ * Created by Alfonso on 18/03/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
 
 public class AyudaGeneral extends AppCompatActivity {
 
@@ -17,6 +26,8 @@ public class AyudaGeneral extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ayuda_general);
+        //Activo el boton atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
       //Accedemos a nuestro layout vacio que rellenaremos con los campos despues
         final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
@@ -92,7 +103,35 @@ public class AyudaGeneral extends AppCompatActivity {
         btnRegresar.setBackgroundResource(R.drawable.seleccion);
         lm.addView(btnRegresar);
 
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creamos el Intent
+                finish();
 
+            }
+        });
 
     }
+
+
+
+
+    //Botron atrasssssss
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Log.i("ActionBar", "Atrás");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
 }

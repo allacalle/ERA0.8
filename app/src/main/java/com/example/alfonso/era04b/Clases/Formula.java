@@ -9,6 +9,8 @@ import java.util.Date;
 
 /**
  * Created by Alfonso on 20/10/2015.
+ * Ultima modificación: 20/07/2016
+
  */
 
 
@@ -40,7 +42,7 @@ public class Formula
     PROC Constructor DEV int
     REQUIERE: Que existe la base de datos, que exista una formula con el identificador pasado por parametro.
     MODIFICAobjeto: Crea un objeto de tipo Formula.
-    EFECTOS: El objeto tipo formula es creado. Sus atributos toman valores si es necesario.
+    EFECTOS: El objeto tipo formula es creado. Sus atributos toman valores de la base de datos si es necesario.
 
      */
 
@@ -113,236 +115,98 @@ public class Formula
     }
     //Aqui empiezan los getter y setters sencillos de la clase.
 
-    //Constructor de copia
-        /*
-
-    PROC contarPametros() DEV int
-    REQUIERE:
-    MODIFICA:
-    EFECTOS: Muestra el numero de parametros de una formula
-
-     */
-
-    //Hacer
-
-    /*
-    PROC getTipoFormula() DEV String
-    REQUIERE:Que exista un objeto formula.
-    MODIFICA:
-    EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-     */
+    //Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
     public String getTipoFormula()
     {
         return tipoFormula;
     }
 
 
-
-
-
-    /*
-
-   PROC getTipoFormula() DEV String
-   REQUIERE:Que exista un objeto formula.
-   MODIFICA:
-   EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-    */
+    //Devuelve el nombre de la formula
     public String getNombreCompleto()
     {
         return nombreCompleto;
     }
 
-         /*
 
-    PROC getTipoFormula() DEV String
-    REQUIERE:Que exista un objeto formula.
-    MODIFICA:
-    EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-     */
-
-    /*
-
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
+    //Devuelve la abreviatura de la formula.
     public String getAbreviatura() {
         return abreviatura;
     }
 
-    /*
 
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
+     /*
+        Devuelve la expresión de la fórmula. Por ejemplo una expresión podría ser. "a + b +c". Si el tipo de formula es escala
+        no existe el campo expresión.
+     */
     public String getExpresion() {
         return expresion;
     }
 
 
-    /*
-
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
+     //Se agrega un tipo a la formula. Los tipos pueden ser generico y escala.
     public void setTipoFormula(String tipoFormula) {
         this.tipoFormula = tipoFormula;
     }
 
-    /*
 
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
+    //Se agrega un nombre completo a la fórmula.
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
 
-    /*
 
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
+    //Se agrega una abreviatura a la formula
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
     }
-    /*
-
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
 
 
+    /*Se agrega una expresión a la formula.Por ejemplo una expresión podría ser. "a + b +c". Si el tipo de formula es escala
+    no existe el campo expresión.
+    */
     public void setExpresion(String expresion) {
         this.expresion = expresion;
     }
 
 
-    /*
-
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
-
+    //Devuelve un vector de dato Tipo Parametro.
     public Parametro[] getParametros() {
         return parametros;
     }
-    /*
 
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
-
-
+    //Copia un Tipo de dato Parametro en los Parametros de esta formula.
     public void setParametros(Parametro[] parametros) {
         this.parametros = parametros;
     }
 
-        /*
-
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
-
-
+    //Devuelve el campo llamado Resultado.
     public Parametro getResultado() {
         return resultado;
     }
 
-    /*
 
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
-
-
+    //Asigna un identificador a la formula.
     public void setIdFormula(Integer idFormula) {
         IdFormula = idFormula;
     }
-    /*
 
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
 
-*/
-
+    //Obtiene el identificador de la formula
     public Integer getIdFormula() {
         return IdFormula;
     }
-    /*
 
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
 
-*/
-
-    public int buscarPosicionDeParametro (Integer idParametro)
-    {
-        return 1;
-    }
-    /*
-
-PROC getTipoFormula() DEV String
-REQUIERE:Que exista un objeto formula.
-MODIFICA:
-EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: escala y general.
-
-*/
-
+    //Devuelve el contenido de la posición en el vector pedida como parametro.
     public Parametro getParametro (Integer posicion)
     {
         return parametros[posicion];
     }
 
-    //Aqui acaban los getter y setter sencillos de la clase
 
 
-    /*
-
-    PROC contarPametros() DEV int
-    REQUIERE:
-    MODIFICA:
-    EFECTOS: Muestra el numero de parametros de una formula
-
-     */
-
-
-
+    //Muestra el numero de parametros de una formula
     public int contarParametros()
     {
         return parametros.length ;
@@ -353,6 +217,13 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
 
     }
 
+    /*
+       PROC calcularFormula
+       REQUIERE: Tener todos los datos necesarios para poder hacer un calculo de la formula.
+       MODIFICA:
+       EFECTOS: Selecciona dependiendo de la formula calcularFormulaGeneral o calcularFormulaEscala.
+
+        */
     public String calcularFormula ()
     {
         String resultado ="";
@@ -368,6 +239,13 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
         return resultado;
     }
 
+    /*
+         PROC calcularFormulaGeneral
+         REQUIERE: Tener todos los datos necesarios para poder hacer un calculo de la formula. Ser una formula de tipo general.
+         MODIFICA: Campo resultado de la formula.
+         EFECTOS: Resuelve una formula de tipo general y muestra su resultado en pantalla.
+
+          */
     public String calcularFormulaGeneral(){
         String resultado ="";
 
@@ -395,6 +273,14 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
         return resultado;
     }
 
+       /*
+         PROC calcularFormulaEscala
+         REQUIERE: Tener todos los datos necesarios para poder hacer un calculo de la formula. Ser una formula de tipo general.
+         MODIFICA: Campo resultado de la formula.
+         EFECTOS: Resuelve una formula de tipo escala y muestra su resultado en pantalla.
+
+          */
+
     public String calcularFormulaEscala() {
         String resultado = "";
         float contador = 0;
@@ -416,6 +302,14 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
         return resultado;
     }
 
+       /*
+         PROC evaluarResultado
+         REQUIERE: Formula con criterios de puntuacion. Una puntuación que es el resultado a evaluar.
+         MODIFICA: Campo resultado de la formula.
+         EFECTOS: Interpreta un criterio de puntuación para conseguir una puntuación.
+
+          */
+
     public String evaluarResultado (String puntuacion)
     {
         String resultado="";
@@ -432,18 +326,23 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
 
         return resultado;
     }
-
-    public boolean introducirValoresFormula (String vectorResultados[] )
-    {
-        for (int i =0 ;i < contarParametros(); i++)
-        {
-            /*
+       /*
+         PROC introducirValoresFormula
+         REQUIERE: vectorResultados[]
+         MODIFICA: Campos valor de los parametros de la formula.
             //El valor del parametro dependera del tipo de este.
             //Tipo numero: El valor es el numero que se necesita para calcular la formula.
             //Tipo lista: Es el identificador del criterio de puntuacion que contiene el valor del parametro
             //Tipo logico: Si es 1 significa que esta checked si es 0 significa que no lo esta. En caso de estar chequeado
             //el valor del parametro sera el valor del criterio que tenga el idParametro de este campo.
-            */
+         EFECTOS: La formula obtiene valores para poder utilizar el metodo calcularFormula
+
+          */
+
+    public boolean introducirValoresFormula (String vectorResultados[] )
+    {
+        for (int i =0 ;i < contarParametros(); i++)
+        {
             int posicionCriterio;
             String  valorCriterio;
 
@@ -489,6 +388,13 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
         return true;
     }
 
+       /*
+         PROC introducirRecientes
+         REQUIERE: El resultado de una formula calculada.
+         MODIFICA: Tabla recientes de la base de datos.
+         EFECTOS: Introduce la ultima formula utilizada como formula Reciente agregando el id de la formula y la fecha a la tabla Recientes
+          */
+
     public boolean introducirRecientes (Integer idFormula, String resultado,  Context context)
     {
 
@@ -508,7 +414,7 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
         //Cogemos la fecha del sistema y le ponemos en formato dd/mm/aaaa hora:minuto:segundo
         SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
-//Si existe la borramos e insertamos la id con la fecha actual en la tabla Recientes
+        //Si existe la borramos e insertamos la id con la fecha actual en la tabla Recientes
         if (numeroFormulas != 0 ) {
             db.execSQL("DELETE FROM Recientes WHERE IdFormula = '" + idFormula + "' ;");
             db.execSQL("INSERT INTO Recientes (IdFormula,Fecha,Resultado)  VALUES ('"+ idFormula +"','"+ curFormater.format(date) +"','"+ resultado +"' );");
@@ -527,10 +433,12 @@ EFECTOS: Devuelve en una cadena el tipo de Formula. Los tipos pueden ser dos: es
         return true;
     }
 
+    //Agrega la bibliografia a una formula
     public String getBibliografia() {
         return bibliografia;
     }
 
+    //Obtiene la bibliografía de una formula.
     public void setBibliografia(String bibliografia) {
         this.bibliografia = bibliografia;
     }

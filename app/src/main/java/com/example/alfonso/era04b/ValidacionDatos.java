@@ -3,6 +3,13 @@ package com.example.alfonso.era04b;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * Created by Alfonso on 08/02/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
+
 public class ValidacionDatos extends AppCompatActivity {
 
     @Override

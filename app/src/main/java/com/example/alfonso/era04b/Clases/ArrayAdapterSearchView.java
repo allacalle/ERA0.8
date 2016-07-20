@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 
 /**
  * Created by Alfonso on 19/07/2016.
+ * Ultima modificación: 20/07/2016
  */
 
 // Extension de la clase searchview para utilizar el autocompletado

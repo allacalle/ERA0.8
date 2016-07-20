@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Created by Alfonso on 11/03/2016.
+ * Ultima modificación: 20/07/2016
  */
 public class CriterioPuntuacion
 {

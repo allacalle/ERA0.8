@@ -17,6 +17,12 @@ import android.widget.TextView;
 
 import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
 
+/**
+ * Created by Alfonso on 18/03/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
 public class FormulasRecientes extends AppCompatActivity {
 
     @Override

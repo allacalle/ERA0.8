@@ -17,6 +17,12 @@ import com.example.alfonso.era04b.Clases.Formula;
 import org.w3c.dom.Text;
 
 
+/**
+ * Created by Alfonso on 20/10/2015.
+ * Ultima modificación: 20/07/2016
+
+ */
+
    /*
        Para cada pagina se debe mostrar
 

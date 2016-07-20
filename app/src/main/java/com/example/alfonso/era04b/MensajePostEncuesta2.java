@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Created by Alfonso on 08/02/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
+
 public class MensajePostEncuesta2 extends AppCompatActivity {
 
     private Button btnInicio;

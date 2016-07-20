@@ -1,6 +1,12 @@
 package com.example.alfonso.era04b;
 
 
+/**
+ * Created by Alfonso on 18/03/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,6 +38,7 @@ public class CalcularFormula extends AppCompatActivity {
     int indiceCampoIncorrecto = 0 ;
     boolean existenCamposEdit = false;
     String idFormula;
+    String nombreFormula;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -62,6 +69,8 @@ public class CalcularFormula extends AppCompatActivity {
         //Se crea una formula con el id que nos han pasado.
         //Se crea una formula con el id que nos han pasado.
         final Formula formulaActual = new Formula(idFormula, getApplicationContext());
+        //Sacamos el nombre de la formula para futuros usos.
+        nombreFormula = formulaActual.getAbreviatura();
         //Parametro parametro = new Parametro("2" , getApplicationContext());
         //Lista para los editText
         final List<EditText> allEds = new ArrayList<EditText>();
@@ -444,6 +453,20 @@ public class CalcularFormula extends AppCompatActivity {
             case R.id.error:
                 //metodoSearch()
                 //info.setText("Se presionó Buscar");
+
+                //Pasos para mandar el correo usando gmail u otra aplicación externa.
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"eracontacto@yopmail.com"});
+                emailIntent.putExtra(Intent.EXTRA_CC, new String[]{"eracontacto@yopmail.com"});
+                //emailIntent.putExtra(Intent.EXTRA_BCC, new String[]{"email3@ekiketa.es"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Reporte de Error Formula:" +nombreFormula  );
+                //Recordad que la barra invertida más "n" es un salto de linea "n" así, escribiremos el email con varios saltos de linea.
+                //String textoApp = "Envio un email desde mi App de android";
+                //emailIntent.putExtra(Intent.EXTRA_TEXT, "Probando , Probando");
+                emailIntent.setType("message/rfc822");
+                //Damos la opción al usuario que elija desde que app enviamos el email.
+                startActivity(Intent.createChooser(emailIntent, "Selecciona aplicación..."));
+
                 return true;
             case R.id.ayuda:
                 Intent intent =

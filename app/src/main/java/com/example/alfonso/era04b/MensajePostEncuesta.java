@@ -14,6 +14,13 @@ import android.widget.TextView;
 
 import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
 
+/**
+ * Created by Alfonso on 08/02/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
+
+
 public class MensajePostEncuesta extends AppCompatActivity {
 
     @Override

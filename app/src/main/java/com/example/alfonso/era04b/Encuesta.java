@@ -1,5 +1,10 @@
 package com.example.alfonso.era04b;
 
+/**
+ * Created by Alfonso on 14/05/2016.
+ * Ultima modificación: 20/07/2016
+
+ */
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
