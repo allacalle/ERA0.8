@@ -25,7 +25,15 @@ public class Parametro
     //Este campo almacenara el valor de la suma total de la escala.
     private float PuntuacionEscala ;
 
-    //Constructor de la clase
+       /*
+         PROC Parametro (Constructor de la clase)
+         REQUIERE: El identificador del parametro.
+         MODIFICA:
+         EFECTOS: Crea un Parametro obteniendo los datos de la base de datos Parametros.
+
+          */
+
+
     public Parametro(String idParametro, Context context) {
         //Abrir la base de datos y buscar la formula que coincide con la id .
 
@@ -102,79 +110,98 @@ public class Parametro
 
 
 
+    //Obtiene la medida de un parametro.
     public String getMedida() {
         return medida;
     }
 
+    //Obtiene el nombre de un parametro.
     public String getNombre() {
         return nombre;
     }
 
+    //Obtiene el tipo de un parametro.
     public String getTipo() {
         return tipo;
     }
 
+    //Asigna la medida a un parametro
     public void setMedida(String medida) {
         this.medida = medida;
     }
 
+    //Asigna el nombre a un parametro
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    //Asigna el tipo a un parametro
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
+    //Asigna el id a un parametro.
     public void setIdParametro(Integer idParametro) {
         IdParametro = idParametro;
     }
 
+    //Obtiene el id de un parametro
     public Integer getIdParametro() {
         return IdParametro;
     }
 
+    //Asigna el criterio a un parametro
     public void setCriterio(CriterioPuntuacion[] criterio) {
         this.criterio = criterio;
     }
 
+    //Obtiene el criterio de un parametro
     public CriterioPuntuacion[] getCriterio() {
         return criterio;
     }
 
+    //Obtiene el valor de un parametro
     public String getValor() {
         return valor;
     }
 
+    //Asigna el valor de un parametro.
     public void setValor(String valor) {
         this.valor = valor;
     }
 
+    //Obtiene el criterio de puntuación de un parametro indicandole la posición donde se encuentra.
     public CriterioPuntuacion getCriterioPuntuacion (Integer posicion)
     {
         return criterio[posicion];
     }
 
+    //Obtiene el valor maximo de un parametro
     public float getValorMaximo() {
         return ValorMaximo;
     }
 
+    //Obtiene el valor minimo de un parametro
     public float getValorMinimo() {
         return ValorMinimo;
     }
 
+    //Asigna el valor maximo a un parametro
     public void setValorMaximo(int valorMaximo) {
         ValorMaximo = valorMaximo;
     }
 
+    //Asigna el valor minimo a un parametro
     public void setValorMinimo(int valorMinimo) {
         ValorMinimo = valorMinimo;
     }
 
+    //Obtiene la puntuación de un parametro de una formula de tipo escala.
     public float getPuntuacionEscala() {
         return PuntuacionEscala;
     }
 
+    //Asigna la puntuación a un parametro de una formula de tipo escala
     public void setPuntuacionEscala(float puntuacionEscala) {
         PuntuacionEscala = puntuacionEscala;
     }
@@ -226,11 +253,7 @@ public class Parametro
     }
 
 
-
-
-
-
-
+    //Cuenta los criterios del Parametro.
     public int contarCriterios()
     {
         return criterio.length ;
