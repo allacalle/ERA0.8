@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -451,21 +452,21 @@ public class CalcularFormula extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.error:
-                //metodoSearch()
-                //info.setText("Se presionó Buscar");
 
-                //Pasos para mandar el correo usando gmail u otra aplicación externa.
+                //establecemos el destinatario del mensaje. Que sera nuestra email de contacto.
+                String[] to = { "eracontacto@yopmail.com", "eracontacto@yopmail.com" };
+                String[] cc = { "eracontacto@yopmail.com" };
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"eracontacto@yopmail.com"});
-                emailIntent.putExtra(Intent.EXTRA_CC, new String[]{"eracontacto@yopmail.com"});
-                //emailIntent.putExtra(Intent.EXTRA_BCC, new String[]{"email3@ekiketa.es"});
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Reporte de Error Formula:" +nombreFormula  );
-                //Recordad que la barra invertida más "n" es un salto de linea "n" así, escribiremos el email con varios saltos de linea.
-                //String textoApp = "Envio un email desde mi App de android";
-                //emailIntent.putExtra(Intent.EXTRA_TEXT, "Probando , Probando");
+                emailIntent.setData(Uri.parse("mailto:"));
+                //Rellenamos los campos necesarios para mandar el mail
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+                emailIntent.putExtra(Intent.EXTRA_CC, cc);
+                //Se agrega el nombre de la formula a reportar.
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Reporte ERROR en Formula:"+nombreFormula );
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "");
                 emailIntent.setType("message/rfc822");
-                //Damos la opción al usuario que elija desde que app enviamos el email.
-                startActivity(Intent.createChooser(emailIntent, "Selecciona aplicación..."));
+                //Iniciamos la actividad para mandar el mail.
+                startActivity(Intent.createChooser(emailIntent, "Email "));
 
                 return true;
             case R.id.ayuda:
