@@ -2,6 +2,7 @@ package com.example.alfonso.era04b;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -98,9 +99,12 @@ public class AyudaGeneral extends AppCompatActivity {
         cursorAyuda.close();
         db.close();
 
+        /*
+
         final Button btnRegresar = new Button(this);
         btnRegresar.setText("Regresar");
         btnRegresar.setBackgroundResource(R.drawable.seleccion);
+        btnRegresar.setTextColor(Color.parseColor("#FFFFFF"));
         lm.addView(btnRegresar);
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +115,7 @@ public class AyudaGeneral extends AppCompatActivity {
 
             }
         });
+        */
 
     }
 

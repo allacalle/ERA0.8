@@ -206,11 +206,7 @@ public class FormulasPrioridad extends AppCompatActivity {
 
     //Al pulsar en el boton nos llevara a la formula cuyo nombre tiene (el identificador del boton deberia ser el IdFormula
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.prioridad, menu);
-        return true;
-    }
+
 
 
 

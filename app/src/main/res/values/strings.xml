@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">ERA</string>
-    <string name="Bienvenida">Bienvenido a ERA (Emergency Assistance) una aplicación que le ayudará con sus formulas más utilizadas. Pulse en Siguiente para continuar con la explicación. Si ya ha utilizado ERA anterioramente puede omitirla pulsando en el botón Omitir Explicación.En las siguientes pantalla se le explicará como configurar y utilizar ERA. </string>
-    <string name="PantallaUno">Con ERA podrá resolver de forma rápida formulas como Child-Pugh, TIMI, Osmolaridad o Aclaramiento de creatinina. </string>
+    <string name="Bienvenida">Bienvenida a ERA (Emergency Assistance) una aplicación creada para ayudar al personal médico que trabaja en Urgencia. Para saber como utilizar ERA pulse en siguiente, sino es la primera vez que la utiliza  puede pulsar Omitir Explicación. </string>
+    <string name="PantallaUno">Con ERA podrá resolver de forma rápida fórmulas como Child-Pugh ,TIMI o Aclaramiento de creatinina. Estas fórmulas han sido extraídos de documentación que puede consultar en el botón Ayuda de la aplicación. </string>
     <string name="title_activity_bienvenida">Bienvenidoooo </string>
-    <string name="PantallaDos"> Antes de empezar a utilizar sus fórmulas se le explicará como ERa le ayuda a que encuentre sus formulas rapidamente.ERA utiliza un sistema de prioridades para encontrar sus formulas más utilizadas de manera rapida y sencilla. </string>
-    <string name="PantallaTres">  El sistema es similar al semáforo de prioridades utilizado en Urgencia que utiliza los colores Rojo, Amarillo y Verde.Una vez configurada ERA podrá acceder por ejemplo a las formulas que usted considere de Alta prioridad pulsando el boton Rojo. </string>
+    <string name="PantallaDos">Antes de empezar a utilizar sus fórmulas debemos realizar algunos pasos para el correcto uso de la aplicación. ERA utiliza un sistema de prioridades para encontrar sus fórmulas de la manera rápida y sencilla.    </string>
+    <string name="PantallaTres">  El sistema es similar al semáforo de prioridades utilizado en Urgencia que utiliza los colores Rojo, Amarillo y Verde. Una vez configurada ERA podrá acceder por ejemplo a las formulas que usted considere de Alta prioridad pulsando el botón Rojo. </string>
     <string name="PantallaCuatro"> Para  personalizar ERA deberá realizar una encuesta. En esta encuesta deberá asignar una prioridad a cada una de las formulas que se le muestren por pantalla. Al completarla tendrá ERA configurada y recuerde que puede cambiar esta Configuración en cualquier momento desde el botón Configuración.  </string>
     <string name="mensaje_cambiarConfiguración">ERA le permite cambiar la configuración de sus formulas siempre que lo desee. Para cambiar su configuración pulse en Cambiar Configuración , para volver a la página de inicio pulse en Regresar</string>
     <string name="cambiar_configuracion">Cambiar Configuración</string>

@@ -10,7 +10,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -39,6 +41,8 @@ public class CambiarConfiguracion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encuesta);
+        //Activo el boton atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*Esta pantalla debe ser muy parecida a la pantalla de encuesta aqui se debe mostrar
 
@@ -328,13 +332,22 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
 
 
+    }
 
-        //resultado.setText(cadena);
-
-
-
-
-
+    //Botron atrasssssss
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Log.i("ActionBar", "Atrás");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
     }
+
 }

@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,6 +29,8 @@ public class MensajePostEncuesta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensaje_post_encuesta);
+        //Activo el boton atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Recuperamos la información pasada en el intent
         Bundle bundle = this.getIntent().getExtras();
@@ -220,4 +224,22 @@ public class MensajePostEncuesta extends AppCompatActivity {
 
 
     }
+
+
+    //Botron atrasssssss
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Log.i("ActionBar", "Atrás");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
 }

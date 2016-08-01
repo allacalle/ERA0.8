@@ -275,7 +275,7 @@ public class Inicio extends AppCompatActivity {
                 return true;
             case R.id.configuracion:
                 Intent intent =
-                        new Intent(Inicio.this, MensajeCambiarConfiguracion.class);
+                        new Intent(Inicio.this, CambiarConfiguracion.class);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
                 //metodoEdit()

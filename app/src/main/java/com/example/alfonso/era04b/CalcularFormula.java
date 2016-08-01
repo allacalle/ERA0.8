@@ -235,6 +235,10 @@ public class CalcularFormula extends AppCompatActivity {
                 String[] vectorResultados = new String[formulaActual.contarParametros()];
                 //Vamos a extraer los valores introducidos
 
+                //Creamos una variable String para colocar un mensaje de texto en los errores.
+                String mensajeError = "";
+
+
                 //Contamos el numero de parametros -1 porque no estamos interesados en el parametro resultado
                 for (int i = 0; i < formulaActual.contarParametros(); i++) {
                     //Necesitamos 3 iteradores uno para cada tipo de list<>
@@ -248,18 +252,28 @@ public class CalcularFormula extends AppCompatActivity {
                                 camposCorrectos = false;
                                 //Guardamos el indice del campo incorrecto para mostrarlo mas adelante.
                                 indiceCampoIncorrecto = i;
+                                mensajeError = "El parametro " +formulaActual.getParametro(i).getNombre() + " es incorrecto, debe introducir un numero valido";
+
+                                //Comprobamos que el decimal este separado por una coma en vez de un punto.
+                                if (esComaElDecimal(vectorResultados[i]))
+                                {
+                                    mensajeError = "El parametro " +formulaActual.getParametro(i).getNombre() + " es incorrecto, los numeros decimales deben ir separados por puntos" ;
+                                }
                             }
 
                             //Si el valor es numero pero es menor que el valor numero es incorrecto
                             else if (Float.parseFloat(vectorResultados[i]) < formulaActual.getParametro(i).getValorMinimo()) {
                                 camposCorrectos = false;
                                 indiceCampoIncorrecto = i;
+                                mensajeError = " El parametro "  +formulaActual.getParametro(i).getNombre() +  " es incorrecto, el numero introducido debe ser mayor o igual a " + formulaActual.getParametro(i).getValorMinimo() ;
                             }
 
                             //Si es mayor que el valor maximo es incorrecto
                             else if (Float.parseFloat(vectorResultados[i]) > formulaActual.getParametro(i).getValorMaximo()) {
                                 camposCorrectos = false;
                                 indiceCampoIncorrecto = i;
+                                mensajeError = "El parametro " +formulaActual.getParametro(i).getNombre() + " es incorrecto, el numero introducido debe ser menor o igual a " + formulaActual.getParametro(i).getValorMaximo() ;
+
                             }
 
 
@@ -270,6 +284,7 @@ public class CalcularFormula extends AppCompatActivity {
                             if (aux.equals("-1")) {
                                 camposCorrectos = false;
                                 indiceCampoIncorrecto = i;
+                                mensajeError = "El parametro " +formulaActual.getParametro(i).getNombre() +  " es incorrecto, debe seleccionar una opción";
                             }
 
                             iRadio++;
@@ -287,17 +302,12 @@ public class CalcularFormula extends AppCompatActivity {
 
                     if (!camposCorrectos) {
 
-                        if(formulaActual.getParametro(i).getTipo().equals("numero")) {
-                            alertDialog.setMessage("Error en el parametro " + formulaActual.getParametro(indiceCampoIncorrecto).getNombre() +". Los decimales deben ir separados por un punto.");
+                        {
+
+                            alertDialog.setMessage(mensajeError);
                             alertDialog.show();
                             break;
 
-                        }
-                        else
-                        {
-                            alertDialog.setMessage("Error en el parametro " + formulaActual.getParametro(indiceCampoIncorrecto).getNombre());
-                            alertDialog.show();
-                            break;
                         }
 
                     }
@@ -439,6 +449,10 @@ public class CalcularFormula extends AppCompatActivity {
     // Funcion auxiliar que comprueba si una cadena es un numero. Podria ser interesante tenerlas todas en una misma clase
     public boolean isNumeric(String str) {
         return str.matches("^-?[0-9]+([.][0-9]+)?$");
+    }
+
+    public boolean esComaElDecimal (String str) {
+        return str.matches("^-?[0-9]+([,][0-9]+)?$");
     }
 
     //Botron atrasssssss

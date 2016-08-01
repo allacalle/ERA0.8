@@ -244,9 +244,12 @@ public class AyudaFormula extends AppCompatActivity {
         layoutBibliografia.addView(nombreBibliografia);
         lm.addView(layoutBibliografia);
 
+
+/*
         final Button btnRegresar = new Button(this);
         btnRegresar.setText("Regresar");
         btnRegresar.setBackgroundResource(R.drawable.seleccion);
+        btnRegresar.setTextColor(Color.parseColor("#FFFFFF"));
         lm.addView(btnRegresar);
 
 
@@ -258,7 +261,7 @@ public class AyudaFormula extends AppCompatActivity {
 
             }
         });
-
+*/
 
 
     }
