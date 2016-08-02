@@ -55,8 +55,8 @@ public class CalcularFormula extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
-        Button BtnRecientes = (Button) findViewById(R.id.BtnRecientes) ;
-        Button BtnInicio = (Button) findViewById(R.id.BtnInicio) ;
+        Button btnRecientes = (Button) findViewById(R.id.BtnRecientes) ;
+        Button btnInicio = (Button) findViewById(R.id.BtnInicio) ;
         //Button BtnAyuda = (Button) findViewById(R.id.BtnAyuda) ;
 
 
@@ -95,87 +95,82 @@ public class CalcularFormula extends AppCompatActivity {
         //antes de nada creamos un layaout con un label de nombre de la formula y a su derecho un boton de información.
         LinearLayout layoutCabecera = new LinearLayout(this);
         layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        TextView nombreDeFormula = new TextView(this);
-        nombreDeFormula.setText(formulaActual.getNombreCompleto());
-        nombreDeFormula.setLayoutParams(param);
-        nombreDeFormula.setGravity(Gravity.CENTER_HORIZONTAL);
+        //Creamos un textView donde mostraremos el nombre de la Formula aplicandole un formato distinto.
+        TextView txtNombreDeFormula = new TextView(this);
+        txtNombreDeFormula.setText(formulaActual.getNombreCompleto());
+        txtNombreDeFormula.setLayoutParams(param);
+        txtNombreDeFormula.setGravity(Gravity.CENTER_HORIZONTAL);
+        //Creamos el boton Ayuda que nos mostrará una ayuda detallada de la fórmula.
         Button btnAyuda = new Button(this);
         btnAyuda.setText("Ayuda");
         btnAyuda.setLayoutParams(param);
-        layoutCabecera.addView(nombreDeFormula);
+        layoutCabecera.addView(txtNombreDeFormula);
         layoutCabecera.setBackgroundResource(R.drawable.customborder);
 
-
-
+        
         //tenemos que ver si alguno de los parametros es numero para mostrar o no el boton ayuda.
         for (int i = 0; i < formulaActual.contarParametros(); i++) {
             if (formulaActual.getParametro(i).getTipo().equals("numero"))
                 existenCamposEdit = true;
         }
-
-        /*
-        //Solo mostramos el boton ayuda si existen campos editables en el formulario
-        if(existenCamposEdit)
-            layoutCabecera.addView(btnAyuda);
-         */
+        
         lm.addView(layoutCabecera);
 
 
         for (int i = 0; i < formulaActual.contarParametros(); i++) {
             //Creamos un linear layout para cada iteraccón , en el estarán todos los elementos
-            //No queremos mostrar los parametros de tipo resultado.
             LinearLayout layoutDeParametro = new LinearLayout(this);
             layoutDeParametro.setOrientation(LinearLayout.HORIZONTAL);
             layoutDeParametro.setBackgroundColor(Color.parseColor("#D5F8F8"));
-            //Primero le creamos una caja de texto
+            //Creamos un TextView para mostrar el nombre de cada parámetro de la fórmula.
             layoutDeParametro.setBackgroundResource(R.drawable.customborder2);
-            TextView nombreDeParametro = new TextView(this);
+            TextView txtNombreDeParametro = new TextView(this);
             //Ponemos el nombre del parametro en negrita
-            nombreDeParametro.setTypeface(null, Typeface.BOLD);
-            //nombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
+            txtNombreDeParametro.setTypeface(null, Typeface.BOLD);
+            //txtNombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
 
             if (formulaActual.getParametro(i).getMedida() != null)
-                nombreDeParametro.setText("" +formulaActual.getParametro(i).getNombre()+ "(" +formulaActual.getParametro(i).getMedida()+ ")." );
+                txtNombreDeParametro.setText("" +formulaActual.getParametro(i).getNombre()+ "(" +formulaActual.getParametro(i).getMedida()+ ")." );
             else
-                nombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
+                txtNombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
 
-            nombreDeParametro.setLayoutParams(param);
-            layoutDeParametro.addView(nombreDeParametro);
+            txtNombreDeParametro.setLayoutParams(param);
+            layoutDeParametro.addView(txtNombreDeParametro);
             //Ahora dependiendo del tipo de parametro creamos un elemento u otro
 
             switch (formulaActual.getParametro(i).getTipo()) {
                 //Si es del tipo numero se crea una caja de texto
                 case "numero":
-                    EditText valorNumeroParametro = new EditText(this);
-                    valorNumeroParametro.setLayoutParams(param2);
-                    valorNumeroParametro.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                    valorNumeroParametro.setInputType(InputType.TYPE_CLASS_PHONE);
-                    //valorNumeroParametro.setId(formulaActual.getParametro(i).getIdParametro());
-                    allEds.add(valorNumeroParametro);
-                    layoutDeParametro.addView(valorNumeroParametro);
+                    EditText extValorNumeroParametro = new EditText(this);
+                    extValorNumeroParametro.setLayoutParams(param2);
+                    extValorNumeroParametro.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                    extValorNumeroParametro.setInputType(InputType.TYPE_CLASS_PHONE);
+                    //extValorNumeroParametro.setId(formulaActual.getParametro(i).getIdParametro());
+                    allEds.add(extValorNumeroParametro);
+                    layoutDeParametro.addView(extValorNumeroParametro);
                     break;
                 //Se crea un checbox para cada uno de los criterios de puntuacion
                 case "logico":
-                    CheckBox valorLogicoParametro = new CheckBox(this);
-                    valorLogicoParametro.setLayoutParams(param2);
-                    //valorLogicoParametro.setId(formulaActual.getParametro(i).getIdParametro());
-                    allChs.add(valorLogicoParametro);
-                    layoutDeParametro.addView(valorLogicoParametro);
+                    CheckBox cbxValorLogicoParametro = new CheckBox(this);
+                    cbxValorLogicoParametro.setLayoutParams(param2);
+                    //cbxValorLogicoParametro.setId(formulaActual.getParametro(i).getIdParametro());
+                    allChs.add(cbxValorLogicoParametro);
+                    layoutDeParametro.addView(cbxValorLogicoParametro);
                     break;
 
                 //Se crea un radial group con un radial button para cada una de las opciones
                 case "lista":
-                    RadioGroup valorListaParametro = new RadioGroup(this);
-                    valorListaParametro.setLayoutParams(param);
+                    RadioGroup rgpValorListaParametro = new RadioGroup(this);
+                    rgpValorListaParametro.setLayoutParams(param);
                     for (int j = 0; j < formulaActual.getParametro(i).contarCriterios(); j++) {
                         RadioButton opcion = new RadioButton(this);
                         //Asignamos a cada uno de los botones de opcion como su id la de su criterio para poder encontrarlos luego
                         opcion.setId(formulaActual.getParametro(i).getCriterioPuntuacion(j).getIdCriterioPuntuacion());
                         opcion.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getCriterio());
-                        valorListaParametro.addView(opcion);
+                        rgpValorListaParametro.addView(opcion);
                     }
-                    allRgs.add(valorListaParametro);
-                    layoutDeParametro.addView(valorListaParametro);
+                    allRgs.add(rgpValorListaParametro);
+                    layoutDeParametro.addView(rgpValorListaParametro);
 
                     break;
             }
@@ -195,6 +190,8 @@ public class CalcularFormula extends AppCompatActivity {
 
          */
 
+        //creamos el boton que al pulsar calculará el resultado de la formula.
+        
         final Button btnCalcular = new Button(this);
         btnCalcular.setText("Calcular");
         btnCalcular.setBackgroundResource(R.drawable.seleccion);
@@ -203,7 +200,7 @@ public class CalcularFormula extends AppCompatActivity {
 
 
 
-
+        //creamos una ventana emergente que mostrará mensajes de error o el resultado final de la fórmula.    
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
         alertDialog.setButton("Continuar..", new DialogInterface.OnClickListener() {
@@ -212,9 +209,10 @@ public class CalcularFormula extends AppCompatActivity {
             }
         });
 
-        final TextView textoResultado = new TextView(this);
-        textoResultado.setTextSize(30);
-        lm.addView(textoResultado);
+        //Creamos un TextView para mostrar el resultado en pantalla. Aumentamos su tamaño para que se vea mejor
+        final TextView txtResultado = new TextView(this);
+        txtResultado.setTextSize(30);
+        lm.addView(txtResultado);
 
 
 
@@ -319,7 +317,7 @@ public class CalcularFormula extends AppCompatActivity {
                     //Calculamos los resultados.
                     // formulaActual.calcularFormula();
 
-                    // textoResultado.setText(cadenaPrueba  + "\n Su resultado es \n" + formulaActual.getResultado().getValor());
+                    // txtResultado.setText(cadenaPrueba  + "\n Su resultado es \n" + formulaActual.getResultado().getValor());
 
                     //Agregamos la formula a recientes
                     //Esta funcion no debe tener parametros salvo el context????
@@ -367,8 +365,8 @@ public class CalcularFormula extends AppCompatActivity {
 
                     alertDialog.setMessage(resultadoFinal);
                     alertDialog.show();
-                    //textoResultado.setText(resultadoCriterios);
-                    textoResultado.setText(resultadoFinal);
+                    //txtResultado.setText(resultadoCriterios);
+                    txtResultado.setText(resultadoFinal);
 
 
 
@@ -408,9 +406,9 @@ public class CalcularFormula extends AppCompatActivity {
 
         */
 
-        assert BtnRecientes != null;
+        assert btnRecientes != null;
 
-        BtnRecientes.setOnClickListener(new View.OnClickListener() {
+        btnRecientes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
@@ -424,9 +422,9 @@ public class CalcularFormula extends AppCompatActivity {
             }
         });
 
-        assert BtnInicio != null;
+        assert btnInicio != null;
 
-        BtnInicio.setOnClickListener(new View.OnClickListener() {
+        btnInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent

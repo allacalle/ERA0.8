@@ -18,6 +18,8 @@ import android.widget.Button;
 
 public class Bienvenida extends AppCompatActivity {
 
+    //Creamos los dos botones que aparecerán en la página de bienvenida.
+
     private Button btnSiguiente;
     private Button btnOmitir;
 
