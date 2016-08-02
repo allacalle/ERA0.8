@@ -265,14 +265,14 @@ public class CalcularFormula extends AppCompatActivity {
                             else if (Float.parseFloat(vectorResultados[i]) < formulaActual.getParametro(i).getValorMinimo()) {
                                 camposCorrectos = false;
                                 indiceCampoIncorrecto = i;
-                                mensajeError = " El parametro "  +formulaActual.getParametro(i).getNombre() +  " es incorrecto, el numero introducido debe ser mayor o igual a " + formulaActual.getParametro(i).getValorMinimo() ;
+                                mensajeError = " El parametro "  +formulaActual.getParametro(i).getNombre() +  " es incorrecto, el numero introducido debe ser mayor o igual a " + Math.round(formulaActual.getParametro(i).getValorMinimo()) ;
                             }
 
                             //Si es mayor que el valor maximo es incorrecto
                             else if (Float.parseFloat(vectorResultados[i]) > formulaActual.getParametro(i).getValorMaximo()) {
                                 camposCorrectos = false;
                                 indiceCampoIncorrecto = i;
-                                mensajeError = "El parametro " +formulaActual.getParametro(i).getNombre() + " es incorrecto, el numero introducido debe ser menor o igual a " + formulaActual.getParametro(i).getValorMaximo() ;
+                                mensajeError = "El parametro " +formulaActual.getParametro(i).getNombre() + " es incorrecto, el numero introducido debe ser menor o igual a " + Math.round(formulaActual.getParametro(i).getValorMaximo()) ;
 
                             }
 

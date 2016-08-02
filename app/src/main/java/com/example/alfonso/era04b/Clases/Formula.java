@@ -263,6 +263,8 @@ public class Formula
 
         resultado =  expression.eval().toString() ;
 
+
+
         //Si el parametro resultado tiene criterios de puntuacion con su id hay que evaluar el resultado.
         if (getResultado().contarCriterios() > 0)
             resultado =  evaluarResultado(resultado);

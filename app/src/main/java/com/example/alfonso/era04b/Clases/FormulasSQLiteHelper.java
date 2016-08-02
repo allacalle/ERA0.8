@@ -57,7 +57,7 @@ public class FormulasSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('4','2','x > 35','1');");
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('5','2','x >= 30 && x <= 35','2');");
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('6','2','x < 30','3');");
-        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('7','3','x >= 1 && x <= 3','1');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('7','3','x >= 0 && x <= 3','1');");
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('8','3','x >= 4 && x <= 6','2');");
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('9','3','x > 6','3');");
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('10','4','Ninguna','1');");

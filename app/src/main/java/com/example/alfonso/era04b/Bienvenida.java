@@ -62,4 +62,10 @@ public class Bienvenida extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        return;
+    }
+
 }
