@@ -66,13 +66,15 @@ public class AyudaFormula extends AppCompatActivity {
         //antes de nada creamos un layaout con un label de nombre de la formula y a su derecho un boton de información.
         LinearLayout layoutCabecera = new LinearLayout(this);
         layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        TextView nombreDeFormula = new TextView(this);
-        nombreDeFormula.setText(formulaActual.getNombreCompleto());
-        nombreDeFormula.setLayoutParams(param);
+        //Creo un textview que mostrará el nombre de la formula
+        TextView txtNombreDeFormula = new TextView(this);
+        txtNombreDeFormula.setText(formulaActual.getNombreCompleto());
+        txtNombreDeFormula.setLayoutParams(param);
         Button btnAyuda = new Button(this);
         btnAyuda.setText("Ayuda");
         btnAyuda.setLayoutParams(param);
-        layoutCabecera.addView(nombreDeFormula);
+        layoutCabecera.addView(txtNombreDeFormula);
+        //Aplico un borde diferente a la cabecera.
         layoutCabecera.setBackgroundResource(R.drawable.customborder);
         assert lm != null;
         lm.addView(layoutCabecera);
@@ -87,38 +89,43 @@ public class AyudaFormula extends AppCompatActivity {
             LinearLayout layoutDeParametro = new LinearLayout(this);
             layoutDeParametro.setOrientation(LinearLayout.VERTICAL);
             layoutDeParametro.setBackgroundColor(Color.parseColor("#D5F8F8"));
-            //Primero le creamos una caja de texto
+            //Aplico un borde diferente a este layout secundario
             layoutDeParametro.setBackgroundResource(R.drawable.customborder2);
-            TextView nombreDeParametro = new TextView(this);
-            nombreDeParametro.setTypeface(null, Typeface.BOLD);
+            //Creamos un TextView donde escribiremos el nombre del parametro actual
+            TextView txtNombreDeParametro = new TextView(this);
+            txtNombreDeParametro.setTypeface(null, Typeface.BOLD);
             if (formulaActual.getParametro(i).getMedida() != null)
-                nombreDeParametro.setText("" +formulaActual.getParametro(i).getNombre()+ "(" +formulaActual.getParametro(i).getMedida()+ ")." );
+                txtNombreDeParametro.setText("" +formulaActual.getParametro(i).getNombre()+ "(" +formulaActual.getParametro(i).getMedida()+ ")." );
             else
-                nombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
+                txtNombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
 
-            nombreDeParametro.setLayoutParams(param);
-            layoutDeParametro.addView(nombreDeParametro);
+            txtNombreDeParametro.setLayoutParams(param);
+            layoutDeParametro.addView(txtNombreDeParametro);
             //Ahora dependiendo del tipo de parametro creamos un elemento u otro
+            
+            
+            //Comprobamos que la formula tenga valor minimo, (ya que si tiene minimo tendrá maximo tambien)
+            //Si tiene valores minimos y maximos los mostramos en pantalla.
 
             if (formulaActual.getParametro(i).getValorMaximo() != formulaActual.getParametro(i).getValorMinimo()) {
 
-                TextView TxtValorMinimo = new TextView(this);
+                TextView txtValorMinimo = new TextView(this);
                 //Redondeamos el float, no queremos decimales
-                String StrValorMinimo = "" + Math.round(formulaActual.getParametro(i).getValorMinimo());
-                TxtValorMinimo.setText("Mínimo:" + StrValorMinimo + "\t");
-                TextView TxtValorMaximo = new TextView(this);
-                String StrValorMaximo = "" + Math.round(formulaActual.getParametro(i).getValorMaximo());
-                TxtValorMaximo.setText("Máximo:" + StrValorMaximo + "");
-                layoutDeParametro.addView(TxtValorMinimo);
-                layoutDeParametro.addView(TxtValorMaximo);
+                String strValorMinimo = "" + Math.round(formulaActual.getParametro(i).getValorMinimo());
+                txtValorMinimo.setText("Mínimo:" + strValorMinimo + "\t");
+                TextView txtValorMaximo = new TextView(this);
+                String strValorMaximo = "" + Math.round(formulaActual.getParametro(i).getValorMaximo());
+                txtValorMaximo.setText("Máximo:" + strValorMaximo + "");
+                layoutDeParametro.addView(txtValorMinimo);
+                layoutDeParametro.addView(txtValorMaximo);
             }
-            if (formulaActual.getTipoFormula().equals("escala") ) {
-
-                TextView etiquetaPuntuacion= new TextView(this);
-                etiquetaPuntuacion.setTypeface(null, Typeface.BOLD);
-                etiquetaPuntuacion.setText("Puntuación");
-                etiquetaPuntuacion.setBackgroundResource(R.drawable.customborder2);
-                layoutDeParametro.addView(etiquetaPuntuacion);
+            if (formulaActual.getTipoFormula().equals("escala") ) { 
+                //Creamos un TextView para la palabra puntuacion lblPuntuacion 
+                TextView lblPuntuacion= new TextView(this);
+                lblPuntuacion.setTypeface(null, Typeface.BOLD);
+                lblPuntuacion.setText("Puntuación");
+                lblPuntuacion.setBackgroundResource(R.drawable.customborder2);
+                layoutDeParametro.addView(lblPuntuacion);
 
 
                 for (int j = 0; j < formulaActual.getParametro(i).contarCriterios(); j++) {
@@ -127,25 +134,25 @@ public class AyudaFormula extends AppCompatActivity {
 
                     //Creamos un layout para los criterios.
 
-                    TextView TxtCriterio = new TextView(this);
-                    TextView TxTPuntuacion = new TextView(this);
-                    TextView TxTPuntuacion2 = new TextView(this);
+                    TextView txtCriterio = new TextView(this);
+                    //TextView TxTPuntuacion = new TextView(this);
+                    //TextView TxTPuntuacion2 = new TextView(this);
 
 
                     if(formulaActual.getParametro(i).getTipo().equals("logico"))
                     {
-                        TxtCriterio.setText("\n" + "Puntos:" + formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion() );
+                        txtCriterio.setText("\n" + "Puntos:" + formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion() );
 
                     }
                     else {
 
                         String cadenaCriterio = cambiarFormatoCriterio(formulaActual.getParametro(i).getCriterioPuntuacion(j).getCriterio(), formulaActual.getParametro(i).getNombre() );
                         String puntos = "\n Puntos:";
-                        TxtCriterio.setText(cadenaCriterio + puntos + formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
+                        txtCriterio.setText(cadenaCriterio + puntos + formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
                         //TxTPuntuacion.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
                     }
 
-                    layoutDeCriterio.addView(TxtCriterio);
+                    layoutDeCriterio.addView(txtCriterio);
                     layoutDeCriterio.setBackgroundResource(R.drawable.customborder3);
 
                     //layoutDeCriterio.addView(TxTPuntuacion);
@@ -179,25 +186,24 @@ public class AyudaFormula extends AppCompatActivity {
         }
 
 
+        //Creamos un layout para mostrar la Expresion de la formula si existe.
         LinearLayout layoutDeExpresion = new LinearLayout(this);
+        //Le aplicamos un color y un borde específico.
         layoutDeExpresion.setOrientation(LinearLayout.VERTICAL);
         layoutDeExpresion.setBackgroundColor(Color.parseColor("#D5F8F8"));
-        //Primero le creamos una caja de texto
         layoutDeExpresion.setBackgroundResource(R.drawable.customborder2);
 
 
 
         if (formulaActual.getTipoFormula().equals("general"))
         {
-
-
-
+            
             if(formulaActual.getExpresion().equals(""))
             {
-                TextView etiquetaFormula = new TextView(this);
-                etiquetaFormula.setTypeface(null, Typeface.BOLD);
-                etiquetaFormula.setText("Formula");
-                layoutDeExpresion.addView(etiquetaFormula);
+                TextView lblFormula = new TextView(this);
+                lblFormula.setTypeface(null, Typeface.BOLD);
+                lblFormula.setText("Formula");
+                layoutDeExpresion.addView(lblFormula);
 
                 for (int i = 0; i < formulaActual.contarParametros(); i++) {
 
@@ -208,10 +214,10 @@ public class AyudaFormula extends AppCompatActivity {
                     {
                         for (int j = 0; j < formulaActual.getParametro(i).contarCriterios(); j++)
                         {
-                            TextView nombreDeExpresion = new TextView(this);
+                            TextView txtNombreDeExpresion = new TextView(this);
                             //Mostramos todas las posibles expresiones de la formula
-                            nombreDeExpresion.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getCriterio() + ":" +  formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
-                            layoutDeExpresion.addView(nombreDeExpresion);
+                            txtNombreDeExpresion.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getCriterio() + ":" +  formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
+                            layoutDeExpresion.addView(txtNombreDeExpresion);
 
                         }
                     }
@@ -224,24 +230,24 @@ public class AyudaFormula extends AppCompatActivity {
 
             else
             {
-                TextView nombreDeExpresion = new TextView(this);
-                nombreDeExpresion.setText(formulaActual.getExpresion());
-                layoutDeExpresion.addView(nombreDeExpresion);
+                TextView txtNombreDeExpresion = new TextView(this);
+                txtNombreDeExpresion.setText(formulaActual.getExpresion());
+                layoutDeExpresion.addView(txtNombreDeExpresion);
                 lm.addView(layoutDeExpresion);
 
             }
 
         }
 
-        //Mostramos la bibliografia
+        //Creamos un layout para mostrar la bibliografía de la formula.
         LinearLayout layoutBibliografia = new LinearLayout(this);
         layoutBibliografia.setOrientation(LinearLayout.VERTICAL);
         layoutBibliografia.setBackgroundColor(Color.parseColor("#D5F8F8"));
-        //Primero le creamos una caja de texto
+        //Creamos un textView para agregar el campo de bibliografia.
         layoutBibliografia.setBackgroundResource(R.drawable.customborder2);
-        TextView nombreBibliografia = new TextView(this);
-        nombreBibliografia.setText(formulaActual.getBibliografia());
-        layoutBibliografia.addView(nombreBibliografia);
+        TextView txtNombreBibliografia = new TextView(this);
+        txtNombreBibliografia.setText(formulaActual.getBibliografia());
+        layoutBibliografia.addView(txtNombreBibliografia);
         lm.addView(layoutBibliografia);
 
 

@@ -51,7 +51,6 @@ public class Formula
 
 
         //Abrir la base de datos y buscar la formula que coincide con la id .
-
         FormulasSQLiteHelper usdbh =
                 new FormulasSQLiteHelper(context ,"DbEra", null, 1);
         SQLiteDatabase db = usdbh.getReadableDatabase();
