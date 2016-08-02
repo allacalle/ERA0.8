@@ -37,9 +37,7 @@ public class AyudaGeneral extends AppCompatActivity {
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
-
-
-
+        
 
         //Abrimos la base de datos con las formulas en modo lectura
 
@@ -50,8 +48,6 @@ public class AyudaGeneral extends AppCompatActivity {
 
 
         //Hacemos una consulta para  tomar el nombre de cada formula y su referencia bibliografca
-
-
         Cursor cursorAyuda = db.rawQuery(" SELECT  NombreCompleto,Bibliografia FROM Formulas", null);
 
         //Contamos las formulas
@@ -78,21 +74,21 @@ public class AyudaGeneral extends AppCompatActivity {
         for(int i=0;i< numeroFormulas; i++)
         {
             //Creamos un linear layout auxiliar donde iremos introduciendo los elementos que queremos mostrar
-            LinearLayout auxTexto = new LinearLayout(this);
-            auxTexto.setOrientation(LinearLayout.VERTICAL);
-            auxTexto.setBackgroundResource(R.drawable.customborder2);
-            //El nombre de la formula
-            TextView textNombre = new TextView(this);
-            textNombre.setText(cursorAyuda.getString(0));
-            textNombre.setBackgroundResource(R.drawable.customborder);
-            auxTexto.addView(textNombre);
-            //La referencia bibliográfica
-            TextView textBibliografia = new TextView(this);
-            textBibliografia.setText(cursorAyuda.getString(1));
-            textBibliografia.setTypeface(null, Typeface.ITALIC);
+            LinearLayout layoutAuxTexto = new LinearLayout(this);
+            layoutAuxTexto.setOrientation(LinearLayout.VERTICAL);
+            layoutAuxTexto.setBackgroundResource(R.drawable.customborder2);
+            //Creamos un textView para mostrar el nombre de la formula
+            TextView txtNombreFormula = new TextView(this);
+            txtNombreFormula.setText(cursorAyuda.getString(0));
+            txtNombreFormula.setBackgroundResource(R.drawable.customborder);
+            layoutAuxTexto.addView(txtNombreFormula);
+            //Creamos un textView para mostrar el nombre de la referencia bibliográfica.
+            TextView txtBibliografia = new TextView(this);
+            txtBibliografia.setText(cursorAyuda.getString(1));
+            txtBibliografia.setTypeface(null, Typeface.ITALIC);
 
-            auxTexto.addView(textBibliografia);
-            lm.addView(auxTexto);
+            layoutAuxTexto.addView(txtBibliografia);
+            lm.addView(layoutAuxTexto);
             cursorAyuda.moveToNext();
         }
 
