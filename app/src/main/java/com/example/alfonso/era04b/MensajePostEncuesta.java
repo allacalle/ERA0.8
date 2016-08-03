@@ -37,51 +37,51 @@ public class MensajePostEncuesta extends AppCompatActivity {
         //Construimos el mensaje a mostrar
         final String valorRecibido = bundle.getString("Resultado");
         //creamos el layout dinamico como pros!
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
         //TextView texto = new TextView(this);
         //texto.setText(valorRecibido);
-        //lm.addView(texto);
+        //layoutBase.addView(texto);
 
         //Se crea un parametro auxiliar para cuestiones de diseño con el TextView y el EditText
-        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams layoutformato = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
 
         //Creamos otro parametro para el formato del texto de las columnas
 
-        LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams layoutformato2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 2.5f);
 
         //Vamos a crear primero la cabecera
-        LinearLayout auxCabecera = new LinearLayout(this);
-        auxCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        auxCabecera.setBackgroundResource(R.drawable.customborder);
+        LinearLayout layoutCabecera = new LinearLayout(this);
+        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        layoutCabecera.setBackgroundResource(R.drawable.customborder);
 
 
-        TextView textCabecera1 = new TextView(this);
-        textCabecera1.setText("Formulas");
-        textCabecera1.setLayoutParams(param);
+        TextView txtCabecera1 = new TextView(this);
+        txtCabecera1.setText("Formulas");
+        txtCabecera1.setLayoutParams(layoutformato);
 
-        TextView textCabecera2 = new TextView(this);
-        textCabecera2.setText("Prioridad");
-        textCabecera2.setLayoutParams(param2);
+        TextView txtCabecera2 = new TextView(this);
+        txtCabecera2.setText("Prioridad");
+        txtCabecera2.setLayoutParams(layoutformato2);
 
         //TextView textPrioridad = new TextView(this);
         //textPrioridad.setText("Prioridades");
 
         //textPrioridad.setTypeface(null, Typeface.BOLD);
-        textCabecera1.setTypeface(null, Typeface.BOLD);
-        textCabecera2.setTypeface(null, Typeface.BOLD);
+        txtCabecera1.setTypeface(null, Typeface.BOLD);
+        txtCabecera2.setTypeface(null, Typeface.BOLD);
 
 
 
-        auxCabecera.addView(textCabecera1);
-        auxCabecera.addView(textCabecera2);
-        //auxCabecera.addView(textPrioridad);
+        layoutCabecera.addView(txtCabecera1);
+        layoutCabecera.addView(txtCabecera2);
+        //layoutCabecera.addView(textPrioridad);
 
 
-        lm.addView(auxCabecera);
+        layoutBase.addView(layoutCabecera);
 
 
 
@@ -102,18 +102,7 @@ public class MensajePostEncuesta extends AppCompatActivity {
 
         //Meter la cadena de la encuesta en un vector utilizando la funcion split ','
         final String[] prioridad =  valorRecibido.split(",");
-
-        /*
-        String cadenaAuxiliar="";
-        //Vamos a mostrar el vector para ver si coincide
-        for(int i =0; i< numeroFormulas; i++)
-        {
-            cadenaAuxiliar = cadenaAuxiliar + prioridad + ", " ;
-        }
-        TextView texto2 = new TextView(this);
-        texto2.setText(valorRecibido);
-        lm.addView(texto2);
-        */
+        
 
         //Mostramos al usuario los valores que ha elegido para cada formula
 
@@ -127,15 +116,15 @@ public class MensajePostEncuesta extends AppCompatActivity {
             auxTexto.setOrientation(LinearLayout.HORIZONTAL);
             auxTexto.setBackgroundResource(R.drawable.customborder2);
             //El nombre de la formula
-            TextView TxtAbreviatura = new TextView(this);
-            TxtAbreviatura.setText(identificadores.getString(1));
-            TxtAbreviatura.setLayoutParams(param);
+            TextView txtAbreviatura = new TextView(this);
+            txtAbreviatura.setText(identificadores.getString(1));
+            txtAbreviatura.setLayoutParams(layoutformato);
             identificadores.moveToNext();
-            TxtAbreviatura.setTypeface(null, Typeface.BOLD);
-            auxTexto.addView(TxtAbreviatura);
+            txtAbreviatura.setTypeface(null, Typeface.BOLD);
+            auxTexto.addView(txtAbreviatura);
             TextView TxtPrioridad = new TextView(this);
             TxtPrioridad.setText(prioridad[i]);
-            TxtPrioridad.setLayoutParams(param2);
+            TxtPrioridad.setLayoutParams(layoutformato2);
             TxtPrioridad.setTypeface(null, Typeface.BOLD);
 
             //Asignamos un color a cada prioridad
@@ -144,16 +133,9 @@ public class MensajePostEncuesta extends AppCompatActivity {
 
             auxTexto.addView(TxtPrioridad);
 
-            lm.addView(auxTexto);
+            layoutBase.addView(auxTexto);
 
 
-            /*
-            cadenaAuxiliar = identificadores.getString(1) + " con Prioridad: " +prioridad[i] ;
-            TextView textoFormulas = new TextView(this);
-            textoFormulas.setText(cadenaAuxiliar);
-            lm.addView(textoFormulas);
-            identificadores.moveToNext();
-            */
         }
 
 
@@ -164,32 +146,19 @@ public class MensajePostEncuesta extends AppCompatActivity {
         btnRegresar.setBackgroundResource(R.drawable.seleccion);
         btnRegresar.setTextColor(Color.parseColor("#FFFFFF"));
 
-        lm.addView(btnRegresar);
+        layoutBase.addView(btnRegresar);
 
         Button btnAceptar = new Button(this);
         btnAceptar.setText("Aceptar Encuesta");
         btnAceptar.setBackgroundResource(R.drawable.seleccion);
         btnAceptar.setTextColor(Color.parseColor("#FFFFFF"));
 
-        lm.addView(btnAceptar);
+        layoutBase.addView(btnAceptar);
 
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Creamos el Intent
-                // intent =
-                      //  new Intent(MensajePostEncuesta.this, Encuesta.class);
-
-                //Creamos la información a pasar entre actividades
-                //Bundle b = new Bundle();
-                //b.putString("NOMBRE", (String) boton.getText());
-
-                //Añadimos la información al intent
-                //intent.putExtras(b);
-
-                //Iniciamos la nueva actividad
-               // startActivity(intent);
 
                 finish();
 
