@@ -39,22 +39,20 @@ public class Inicio extends AppCompatActivity {
 
         //Buscamos nuestros botones de Alto,Medio, Bajo
 
-        Button BtnRecientes = (Button) findViewById(R.id.BtnRecientes) ;
-        ImageButton BtnAlta = (ImageButton) findViewById(R.id.BtnAlta);
-        ImageButton BtnMedia = (ImageButton) findViewById(R.id.BtnMedia);
-        ImageButton BtnBaja = (ImageButton) findViewById(R.id.BtnBaja);
-        Button BtnAyuda = (Button) findViewById(R.id.BtnAyuda) ;
+        Button btnRecientes = (Button) findViewById(R.id.BtnRecientes) ;
+        ImageButton btnAlta = (ImageButton) findViewById(R.id.BtnAlta);
+        ImageButton btnMedia = (ImageButton) findViewById(R.id.BtnMedia);
+        ImageButton btnBaja = (ImageButton) findViewById(R.id.BtnBaja);
+        Button btnAyuda = (Button) findViewById(R.id.BtnAyuda) ;
 
 
 
-        setTitle("ERA");
-
-
+        //setTitle("ERA");
 
 
         //Al pulsar uno de estos botones cargara la actividad listado_formulas con el valor de cada boton. (Alto,Medio,Bajo)
-        assert BtnAlta != null;
-        BtnAlta.setOnClickListener(new View.OnClickListener() {
+        assert btnAlta != null;
+        btnAlta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
@@ -74,8 +72,8 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        assert BtnMedia != null;
-        BtnMedia.setOnClickListener(new View.OnClickListener() {
+        assert btnMedia != null;
+        btnMedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
@@ -95,8 +93,8 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        assert BtnBaja != null;
-        BtnBaja.setOnClickListener(new View.OnClickListener() {
+        assert btnBaja != null;
+        btnBaja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
@@ -116,8 +114,8 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        assert BtnRecientes != null;
-        BtnRecientes.setOnClickListener(new View.OnClickListener() {
+        assert btnRecientes != null;
+        btnRecientes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
@@ -131,9 +129,9 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        assert BtnAyuda != null;
+        assert btnAyuda != null;
 
-        BtnAyuda.setOnClickListener(new View.OnClickListener() {
+        btnAyuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
