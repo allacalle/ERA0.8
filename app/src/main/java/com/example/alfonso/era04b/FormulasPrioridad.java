@@ -133,7 +133,6 @@ public class FormulasPrioridad extends AppCompatActivity {
             });
 
 
-
         }
 
         assert BtnRecientes != null;

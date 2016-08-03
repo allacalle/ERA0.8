@@ -19,7 +19,7 @@ import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
 
 /**
  * Created by Alfonso on 18/03/2016.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 03/08/2016
 
  */
 
@@ -31,7 +31,9 @@ public class FormulasRecientes extends AppCompatActivity {
         setContentView(R.layout.activity_formulas_recientes);
         //Boton de atras
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
+        //Cargamos el layout base de nuestro xml
+        LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
+        //Cargamos el boton Inicio de nuestro xml.
         Button BtnInicio = (Button) findViewById(R.id.BtnInicio) ;
 
         assert BtnInicio != null;
@@ -50,8 +52,6 @@ public class FormulasRecientes extends AppCompatActivity {
             }
         });
 
-
-        TextView texto = new TextView(this);
 
 
         //Abro la base de datos.
@@ -116,21 +116,21 @@ public class FormulasRecientes extends AppCompatActivity {
 
 
             //Creo un boton
-            final Button boton = new Button(this);
+            final Button btnFormula = new Button(this);
 
             //Le asigno el texto
-            boton.setText(abreviatura);
-            boton.setId(idFormula);
+            btnFormula.setText(abreviatura);
+            btnFormula.setId(idFormula);
 
             //Le aplico el layout
-            boton.setBackgroundDrawable(drawable);
+            btnFormula.setBackgroundDrawable(drawable);
 
             //Meto el boton en el layout
-            lm.addView(boton);
+            layoutBase.addView(btnFormula);
 
 
             //Definimos la funcion del boton
-            boton.setOnClickListener(new View.OnClickListener() {
+            btnFormula.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //Creamos el Intent
@@ -140,7 +140,7 @@ public class FormulasRecientes extends AppCompatActivity {
                     //Creamos la información a pasar entre actividades
                     Bundle b = new Bundle();
                     String cadenaId= "";
-                    cadenaId = cadenaId + boton.getId() ;
+                    cadenaId = cadenaId + btnFormula.getId() ;
                     b.putString("IdFormula", (String) cadenaId);
 
                     //Añadimos la información al intent
