@@ -28,12 +28,12 @@ public class MensajeCambiarConfiguracion extends AppCompatActivity {
 
         //Si el usuario decide que quiere cambiarla cargamos la pantalla de cambiar configuración
 
-        Button BtnCambiar = (Button) findViewById(R.id.BtnCambiar) ;
-        Button BtnRegresar = (Button) findViewById(R.id.BtnRegresar) ;
+        Button btnCambiarConfiguracion = (Button) findViewById(R.id.BtnCambiarConfiguracion) ;
+        Button btnRegresar = (Button) findViewById(R.id.BtnRegresar) ;
 
 
-        assert BtnCambiar != null;
-        BtnCambiar.setOnClickListener(new View.OnClickListener() {
+        assert btnCambiarConfiguracion != null;
+        btnCambiarConfiguracion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
@@ -47,9 +47,9 @@ public class MensajeCambiarConfiguracion extends AppCompatActivity {
             }
         });
 
-        assert BtnRegresar != null;
+        assert btnRegresar != null;
 
-        BtnRegresar.setOnClickListener(new View.OnClickListener() {
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

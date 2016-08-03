@@ -30,7 +30,7 @@
         >
         <Button
             android:layout_width="0dp"
-            android:id="@+id/BtnCambiar"
+            android:id="@+id/BtnCambiarConfiguracion"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
             android:layout_weight="1"
