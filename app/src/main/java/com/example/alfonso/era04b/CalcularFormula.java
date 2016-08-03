@@ -141,13 +141,13 @@ public class CalcularFormula extends AppCompatActivity {
             switch (formulaActual.getParametro(i).getTipo()) {
                 //Si es del tipo numero se crea una caja de texto
                 case "numero":
-                    EditText extValorNumeroParametro = new EditText(this);
-                    extValorNumeroParametro.setLayoutParams(param2);
-                    extValorNumeroParametro.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                    extValorNumeroParametro.setInputType(InputType.TYPE_CLASS_PHONE);
-                    //extValorNumeroParametro.setId(formulaActual.getParametro(i).getIdParametro());
-                    allEds.add(extValorNumeroParametro);
-                    layoutDeParametro.addView(extValorNumeroParametro);
+                    EditText etxValorNumeroParametro = new EditText(this);
+                    etxValorNumeroParametro.setLayoutParams(param2);
+                    etxValorNumeroParametro.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                    etxValorNumeroParametro.setInputType(InputType.TYPE_CLASS_PHONE);
+                    //etxValorNumeroParametro.setId(formulaActual.getParametro(i).getIdParametro());
+                    allEds.add(etxValorNumeroParametro);
+                    layoutDeParametro.addView(etxValorNumeroParametro);
                     break;
                 //Se crea un checbox para cada uno de los criterios de puntuacion
                 case "logico":

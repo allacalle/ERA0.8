@@ -88,6 +88,8 @@ public class FormulasPrioridad extends AppCompatActivity {
             drawable.setShape(GradientDrawable.RECTANGLE);
             drawable.setStroke(5, Color.parseColor("#BDBDBD"));
 
+            //agregamos un color a los elementos dependiendo de la columna de la prioridad.
+
             switch (valorRecibido) {
                 case "Alta":
                     drawable.setColor(Color.parseColor("#FF8A80"));

@@ -51,10 +51,11 @@ public class CambiarConfiguracion extends AppCompatActivity {
         3. Rellenamos estos botones con la prioridad que tiene ahora la formula
         4. Creamos 2 botones abajo:
             4.1: Boton cambiar configuración: Boton que al pulsarlo cambia la configuración de las formulas.
-                4.1.1: Nos lleva a una pantalla donde se nos dice que la configuración ha sido cambiada.
             4.2: Boton Volver: Nos regresa a la pantalla de inicio sin hacer los cambios.
 
         */
+
+        //Abrimos la base de datos en modo escritura porque debemos actualizar la tabla Prioridad.
 
         FormulasSQLiteHelper usdbh =
                 new FormulasSQLiteHelper(this, "DbEra", null, 1);
@@ -63,26 +64,27 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
 
 
-        //Hacer una consulta para coger todas las formulas de la base de datos.
-        //Cursor abreviatura = db.rawQuery(" SELECT  Abreviatura FROM Formulas", null);
-        Cursor abreviatura = db.rawQuery(" SELECT F.Abreviatura, P.Tipo  FROM Formulas F,Prioridad P WHERE F.IdFormula = P.IdFormula ", null);
+        //Hacer una consulta para coger todas las formulas de la base de datos ademas del tipo de Prioridad que tiene actualmente.
+        //Para lograr esto hacemos un JOIN uniendo ambas tablas por el campo IdFormula
+        Cursor cursorAbreviatura = db.rawQuery(" SELECT F.Abreviatura, P.Tipo  FROM Formulas F,Prioridad P WHERE F.IdFormula = P.IdFormula ", null);
 
 
+        //Cargamos el layout del xml de nuestra actividad , en este layout agregaremos dinamicamente los elementos que necesitemos.
+        final LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
 
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
-
-        //Se crea un parametro auxiliar para cuestiones de diseño con el TextView y el EditText
-        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+        //Creamos dos layout auxiliares que llevaran un formato diferentes para dar mejor apariencia a la página. 
+        LinearLayout.LayoutParams layoutFormato = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
 
-        //Creamos otro parametro para el formato del texto de las columnas
 
-        LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams layoutFormato2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 2.5f);
 
 
+        //creamos una alerta para avisar al usuario si se ha dejado algún campo sin rellenar.
+        
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
         alertDialog.setButton("Continuar..", new DialogInterface.OnClickListener() {
@@ -94,120 +96,128 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
         //Contamos el numero de formulas
         int numeroFormulas;
-        numeroFormulas = abreviatura.getCount();
+        numeroFormulas = cursorAbreviatura.getCount();
         //Movemos el cursor a la primera.
-        abreviatura.moveToFirst();
+        cursorAbreviatura.moveToFirst();
 
         //Declaramos una variable j para asignar identificadores unicos a los botones que iremos creando.
         int j = 0;
 
-        //Vamos a crear primero la cabecera
-        LinearLayout auxCabecera = new LinearLayout(this);
-        auxCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        auxCabecera.setBackgroundResource(R.drawable.customborder);
+          /*
+        Las posiciones j indicaran que se ha seleccionado la prioridad Alta.
+        Las posiciones j+1 indicarán que se ha seleccionado la prioridad Media
+        Las posiciones j+2 indicarán que se ha seleccionado la prioridad Baja.
+
+         */
+
+        //Vamos a crear primero la cabecera, para ello creamos un layout 
+        LinearLayout layoutCabecera = new LinearLayout(this);
+        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        layoutCabecera.setBackgroundResource(R.drawable.customborder);
 
 
-        TextView textCabecera1 = new TextView(this);
-        textCabecera1.setText("Formulas");
-        textCabecera1.setLayoutParams(param);
-
-        TextView textCabecera2 = new TextView(this);
-        textCabecera2.setText("Prioridad");
-        textCabecera2.setLayoutParams(param2);
-
-        //TextView textPrioridad = new TextView(this);
-        //textPrioridad.setText("Prioridades");
-
-        //textPrioridad.setTypeface(null, Typeface.BOLD);
-        textCabecera1.setTypeface(null, Typeface.BOLD);
-        textCabecera2.setTypeface(null, Typeface.BOLD);
+        //Creamos un TextView para mostrar la palabra Fórmulas en la parte superior.
+        TextView txtCabecera1 = new TextView(this);
+        txtCabecera1.setText("Fórmulas");
+        txtCabecera1.setLayoutParams(layoutFormato);
 
 
-
-        auxCabecera.addView(textCabecera1);
-        auxCabecera.addView(textCabecera2);
-        //auxCabecera.addView(textPrioridad);
-
-
-        lm.addView(auxCabecera);
-
-        //queremos que se marquen los botones que fueron seleccionados la ultima vez.!!!
-
-        //Debemos abrir la base de datos y hacer una consulta
+        //Creamos un TextView para mostrar la palabra Prioridad en la parte superior.
+        TextView txtCabecera2 = new TextView(this);
+        txtCabecera2.setText("Prioridad");
+        txtCabecera2.setLayoutParams(layoutFormato2);
 
 
+        //Ponemos las cabeceras en negrita para que se vean mejor.
+        txtCabecera1.setTypeface(null, Typeface.BOLD);
+        txtCabecera2.setTypeface(null, Typeface.BOLD);
 
+        
 
+        //Agregamos los TextView al layout de la cabecera
+        layoutCabecera.addView(txtCabecera1);
+        layoutCabecera.addView(txtCabecera2);
+        //layoutCabecera.addView(textPrioridad);
+
+        
+        //agregamos la cabecera al layout base de la página.    
+        layoutBase.addView(layoutCabecera);
+
+  
+        
         for(int i=0;i< numeroFormulas; i++)
         {
             //Creamos una cadena para indicar que prioridad tiene la formula en esta posición
             String TipoPrioridad = "";
-
             //Creamos un linear layout auxiliar donde iremos introduciendo los elementos que queremos mostrar
-            LinearLayout auxTexto = new LinearLayout(this);
-            auxTexto.setOrientation(LinearLayout.HORIZONTAL);
-            auxTexto.setBackgroundResource(R.drawable.customborder2);
-            //El nombre de la formula
-            TextView text1 = new TextView(this);
-            text1.setText(abreviatura.getString(0));
-            text1.setLayoutParams(param);
-            //Capturamos el tipo de prioridad.
-            TipoPrioridad = abreviatura.getString(1);
+            LinearLayout layoutFormula = new LinearLayout(this);
+            layoutFormula.setOrientation(LinearLayout.HORIZONTAL);
+            layoutFormula.setBackgroundResource(R.drawable.customborder2);
+            //Creamos TexView donde iremos poniendo el nombre de cada una de las fórmulas accediendo al cursor.
+            TextView txtNombreFormula = new TextView(this);
+            txtNombreFormula.setText(cursorAbreviatura.getString(0));
+            txtNombreFormula.setLayoutParams(layoutFormato);
 
-            abreviatura.moveToNext();
-            text1.setTypeface(null, Typeface.BOLD);
-            auxTexto.addView(text1);
+            //Obtenemos la prioridad para esa formula y la almacenamos en la variable TipoPrioridad.
+            TipoPrioridad = cursorAbreviatura.getString(1);
+
+            //Movemos el cursor al siguiente elemento para la siguiente iteracción.
+            cursorAbreviatura.moveToNext();
+            //Ponemos el nombre de la formula en negrita.
+            txtNombreFormula.setTypeface(null, Typeface.BOLD);
+            layoutFormula.addView(txtNombreFormula);
             //Otro Linear Layout para los botones
-            LinearLayout auxBotones = new LinearLayout(this);
+            //LinearLayout auxBotones = new LinearLayout(this);
 
             //Los botones de alta,media,baja
-            RadioGroup urgencia = new RadioGroup(this);
-            urgencia.setOrientation(LinearLayout.HORIZONTAL);
-            RadioButton Alta = new RadioButton(this);
-            //Alta.setText("Alta");
+            RadioGroup rgpUrgencia = new RadioGroup(this);
+            rgpUrgencia.setOrientation(LinearLayout.HORIZONTAL);
+            RadioButton rbtnAlta = new RadioButton(this);
+            //RbtnAlta.setText("Alta");
             //Asignamos color e id a la Alta
-            Alta.setBackgroundColor(Color.parseColor("#FF8A80"));
-            Alta.setId(j);
-            RadioButton Media  = new RadioButton(this);
+            rbtnAlta.setBackgroundColor(Color.parseColor("#FF8A80"));
+            //Asignamos la posicion j a la prioridad Alta.
+            rbtnAlta.setId(j);
+            RadioButton rbtnMedia  = new RadioButton(this);
             //Media.setText("Media");
             //Asignamos color e id a la Media
-            Media.setBackgroundColor(Color.parseColor("#FFF59D"));
-            Media.setId(j+1);
-            RadioButton Baja = new RadioButton(this);
+            rbtnMedia.setBackgroundColor(Color.parseColor("#FFF59D"));
+            //Asignamos la posicion j+1 a la prioridad media
+            rbtnMedia.setId(j+1);
+            RadioButton rbtnBaja = new RadioButton(this);
             //Baja.setText("Baja");
             //Asignamos color e id a la Baja
-            Baja.setBackgroundColor(Color.parseColor("#CCFF90"));
-            Baja.setId(j + 2);
+            rbtnBaja.setBackgroundColor(Color.parseColor("#CCFF90"));
+            //Asignamos la posicion j+2 a la prioridad baja
+            rbtnBaja.setId(j + 2);
 
-            //Rellenamos los botones con el valor anterior segun el tipo de prioridad
+            //Marcamos los botones con el valor anterior según el tipo de prioridad que tenía.
             switch(TipoPrioridad)
             {
                 case "Alta":
-                    Alta.setChecked(true);
+                    rbtnAlta.setChecked(true);
                     break;
                 case "Media":
-                    Media.setChecked(true);
+                    rbtnMedia.setChecked(true);
                     break;
                 case "Baja":
-                    Baja.setChecked(true);
+                    rbtnBaja.setChecked(true);
                     break;
             }
 
 
-            urgencia.addView(Alta);
-            urgencia.addView(Media);
-            urgencia.addView(Baja);
-            //auxBotones.addView(urgencia);
-            auxTexto.addView(urgencia);
-            lm.addView(auxTexto);
-            //lm.addView(auxBotones);
-            allRgs.add(urgencia);
+            //Agregamos los radio button al radio group
+            rgpUrgencia.addView(rbtnAlta);
+            rgpUrgencia.addView(rbtnMedia);
+            rgpUrgencia.addView(rbtnBaja);
+            //Agregamos el radio group al layout de las formulas.
+            layoutFormula.addView(rgpUrgencia);
+            //Agregamos el layout de la formula al  layout base
+            layoutBase.addView(layoutFormula);
+            allRgs.add(rgpUrgencia);
+            //Incrementamos la variable j para poder seguir asignando id a las prioridades.
             j = j +3;
         }
-
-        //queremos que se marquen los botones que fueron seleccionados la ultima vez.!!!
-
-        //Debemos
 
 
         //Creamos un vector de String con los valores Alto,Medio,Bajo cada posicion del vector coincidira con
@@ -218,6 +228,7 @@ public class CambiarConfiguracion extends AppCompatActivity {
         j = 0;
 
 
+        //rellenamos el vector de Prioridad con los valores Alta, Media o Baja dependiendo de la posición.
         for (int i =0; i < numeroFormulas ; i++)
         {
             vectorPrioridad[j] = "Alta";
@@ -229,24 +240,29 @@ public class CambiarConfiguracion extends AppCompatActivity {
         }
 
 
-
-
-
+        //creamos un boton para aceptar los resultados de la encuesta.
         final Button btnAceptar = new Button(this);
         btnAceptar.setText("Aceptar Resultados");
         btnAceptar.setBackgroundResource(R.drawable.seleccion);
         btnAceptar.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnAceptar);
+        //Agregamos el btnAceptar al layoutBase
+        layoutBase.addView(btnAceptar);
+
+        /*
+        //creamos un botón limpiar para reiniciar la encuesta dejando todos los campos a cero.
         final Button btnLimpiar = new Button(this);
         btnLimpiar.setText("Reiniciar encuesta");
         btnLimpiar.setBackgroundResource(R.drawable.seleccion);
         btnLimpiar.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnLimpiar);
+        layoutBase.addView(btnLimpiar);
+        */
+
+
         final Button btnInicio = new Button(this);
         btnInicio.setText("Volver a Inicio");
         btnInicio.setBackgroundResource(R.drawable.seleccion);
         btnInicio.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnInicio);
+        layoutBase.addView(btnInicio);
         //final TextView resultado = new TextView(this);
         //cadena = "";
 
@@ -310,6 +326,7 @@ public class CambiarConfiguracion extends AppCompatActivity {
             }
         });
 
+        /*
         btnLimpiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -319,6 +336,7 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
             }
         });
+        */
 
 
         btnInicio.setOnClickListener(new View.OnClickListener() {
