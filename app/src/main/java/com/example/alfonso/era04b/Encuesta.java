@@ -42,11 +42,11 @@ public class Encuesta extends AppCompatActivity {
         3. Rellenamos estos botones con la prioridad que tiene ahora la formula
         4. Creamos 2 botones abajo:
             4.1: Boton cambiar configuración: Boton que al pulsarlo cambia la configuración de las formulas.
-                4.1.1: Nos lleva a una pantalla donde se nos dice que la configuración ha sido cambiada.
             4.2: Boton Volver: Nos regresa a la pantalla de inicio sin hacer los cambios.
 
         */
 
+        //Abrimos la base de datos en modo escritura ya que cambiaremos la tabla Prioridad.
         FormulasSQLiteHelper usdbh =
                 new FormulasSQLiteHelper(this, "DbEra", null, 1);
         final SQLiteDatabase db = usdbh.getWritableDatabase();
@@ -56,20 +56,21 @@ public class Encuesta extends AppCompatActivity {
 
         //Hacer una consulta para coger todas las formulas de la base de datos.
         Cursor abreviatura = db.rawQuery(" SELECT  Abreviatura FROM Formulas", null);
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
 
         //Se crea un parametro auxiliar para cuestiones de diseño con el TextView y el EditText
-        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams layoutFormato = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
 
         //Creamos otro parametro para el formato del texto de las columnas
 
-        LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams layoutFormato2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 2.5f);
 
 
+        //Creamos un alertDialog para mostrar los mensajes de Error al usuario.
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
         alertDialog.setButton("Continuar..", new DialogInterface.OnClickListener() {
@@ -89,34 +90,34 @@ public class Encuesta extends AppCompatActivity {
         int j = 0;
 
         //Vamos a crear primero la cabecera
-        LinearLayout auxCabecera = new LinearLayout(this);
-        auxCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        auxCabecera.setBackgroundResource(R.drawable.customborder);
+        LinearLayout layoutCabecera = new LinearLayout(this);
+        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        layoutCabecera.setBackgroundResource(R.drawable.customborder);
 
 
-        TextView textCabecera1 = new TextView(this);
-        textCabecera1.setText("Formulas");
-        textCabecera1.setLayoutParams(param);
+        TextView txtCabecera1 = new TextView(this);
+        txtCabecera1.setText("Formulas");
+        txtCabecera1.setLayoutParams(layoutFormato);
 
-        TextView textCabecera2 = new TextView(this);
-        textCabecera2.setText("Prioridad");
-        textCabecera2.setLayoutParams(param2);
+        TextView txtCabecera2 = new TextView(this);
+        txtCabecera2.setText("Prioridad");
+        txtCabecera2.setLayoutParams(layoutFormato2);
 
         //TextView textPrioridad = new TextView(this);
         //textPrioridad.setText("Prioridades");
 
         //textPrioridad.setTypeface(null, Typeface.BOLD);
-        textCabecera1.setTypeface(null, Typeface.BOLD);
-        textCabecera2.setTypeface(null, Typeface.BOLD);
+        txtCabecera1.setTypeface(null, Typeface.BOLD);
+        txtCabecera2.setTypeface(null, Typeface.BOLD);
 
 
 
-        auxCabecera.addView(textCabecera1);
-        auxCabecera.addView(textCabecera2);
-        //auxCabecera.addView(textPrioridad);
+        layoutCabecera.addView(txtCabecera1);
+        layoutCabecera.addView(txtCabecera2);
+        //layoutCabecera.addView(textPrioridad);
 
 
-        lm.addView(auxCabecera);
+        layoutBase.addView(layoutCabecera);
 
 
 
@@ -126,45 +127,45 @@ public class Encuesta extends AppCompatActivity {
         for(int i=0;i< numeroFormulas; i++)
         {
             //Creamos un linear layout auxiliar donde iremos introduciendo los elementos que queremos mostrar
-            LinearLayout auxTexto = new LinearLayout(this);
-            auxTexto.setOrientation(LinearLayout.HORIZONTAL);
-            auxTexto.setBackgroundResource(R.drawable.customborder2);
+            LinearLayout layoutFormula = new LinearLayout(this);
+            layoutFormula.setOrientation(LinearLayout.HORIZONTAL);
+            layoutFormula.setBackgroundResource(R.drawable.customborder2);
             //El nombre de la formula
-            TextView text1 = new TextView(this);
-            text1.setText(abreviatura.getString(0));
-            text1.setLayoutParams(param);
+            TextView txtNombreFormula = new TextView(this);
+            txtNombreFormula.setText(abreviatura.getString(0));
+            txtNombreFormula.setLayoutParams(layoutFormato);
             abreviatura.moveToNext();
-            text1.setTypeface(null, Typeface.BOLD);
-            auxTexto.addView(text1);
+            txtNombreFormula.setTypeface(null, Typeface.BOLD);
+            layoutFormula.addView(txtNombreFormula);
             //Otro Linear Layout para los botones
             LinearLayout auxBotones = new LinearLayout(this);
 
             //Los botones de alta,media,baja
-            RadioGroup urgencia = new RadioGroup(this);
-            urgencia.setOrientation(LinearLayout.HORIZONTAL);
-            RadioButton Alta = new RadioButton(this);
+            RadioGroup rgpPrioridad = new RadioGroup(this);
+            rgpPrioridad.setOrientation(LinearLayout.HORIZONTAL);
+            RadioButton RbtnAlta = new RadioButton(this);
             //Alta.setText("Alta");
             //Asignamos color e id a la Alta
-            Alta.setBackgroundColor(Color.parseColor("#FF8A80"));
-            Alta.setId(j);
-            RadioButton Media  = new RadioButton(this);
+            RbtnAlta.setBackgroundColor(Color.parseColor("#FF8A80"));
+            RbtnAlta.setId(j);
+            RadioButton RbtnMedia  = new RadioButton(this);
             //Media.setText("Media");
             //Asignamos color e id a la Media
-            Media.setBackgroundColor(Color.parseColor("#FFF59D"));
-            Media.setId(j+1);
-            RadioButton Baja = new RadioButton(this);
+            RbtnMedia.setBackgroundColor(Color.parseColor("#FFF59D"));
+            RbtnMedia.setId(j+1);
+            RadioButton RbtnBaja = new RadioButton(this);
             //Baja.setText("Baja");
             //Asignamos color e id a la Baja
-            Baja.setBackgroundColor(Color.parseColor("#CCFF90"));
-            Baja.setId(j + 2);
-            urgencia.addView(Alta);
-            urgencia.addView(Media);
-            urgencia.addView(Baja);
-            //auxBotones.addView(urgencia);
-            auxTexto.addView(urgencia);
-            lm.addView(auxTexto);
-            //lm.addView(auxBotones);
-            allRgs.add(urgencia);
+            RbtnBaja.setBackgroundColor(Color.parseColor("#CCFF90"));
+            RbtnBaja.setId(j + 2);
+            rgpPrioridad.addView(RbtnAlta);
+            rgpPrioridad.addView(RbtnMedia);
+            rgpPrioridad.addView(RbtnBaja);
+            //auxBotones.addView(rgpPrioridad);
+            layoutFormula.addView(rgpPrioridad);
+            layoutBase.addView(layoutFormula);
+            //layoutBase.addView(auxBotones);
+            allRgs.add(rgpPrioridad);
             j = j +3;
         }
 
@@ -187,21 +188,26 @@ public class Encuesta extends AppCompatActivity {
         }
 
 
+        //Creamos un boton aceptar, para aceptar los resultados de la encuesta.
         final Button btnAceptar = new Button(this);
         btnAceptar.setText("Aceptar Resultados");
         btnAceptar.setBackgroundResource(R.drawable.seleccion);
         btnAceptar.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnAceptar);
+        layoutBase.addView(btnAceptar);
+
+        //Creamos un botón limpiar para reiniciar la encuesta y borrar los campos seleccionados.
         final Button btnLimpiar = new Button(this);
         btnLimpiar.setText("Reiniciar encuesta");
         btnLimpiar.setBackgroundResource(R.drawable.seleccion);
         btnLimpiar.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnLimpiar);
+        layoutBase.addView(btnLimpiar);
+
+        //Creamos un boton inicio para volver al principio de la explicación.
         final Button btnInicio = new Button(this);
         btnInicio.setText("Explicamelo de nuevo");
         btnInicio.setBackgroundResource(R.drawable.seleccion);
         btnInicio.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnInicio);
+        layoutBase.addView(btnInicio);
         //final TextView resultado = new TextView(this);
         //cadena = "";
 

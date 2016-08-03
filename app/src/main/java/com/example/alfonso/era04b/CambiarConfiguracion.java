@@ -170,8 +170,8 @@ public class CambiarConfiguracion extends AppCompatActivity {
             //LinearLayout auxBotones = new LinearLayout(this);
 
             //Los botones de alta,media,baja
-            RadioGroup rgpUrgencia = new RadioGroup(this);
-            rgpUrgencia.setOrientation(LinearLayout.HORIZONTAL);
+            RadioGroup rgpPrioridad = new RadioGroup(this);
+            rgpPrioridad.setOrientation(LinearLayout.HORIZONTAL);
             RadioButton rbtnAlta = new RadioButton(this);
             //RbtnAlta.setText("Alta");
             //Asignamos color e id a la Alta
@@ -207,14 +207,14 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
 
             //Agregamos los radio button al radio group
-            rgpUrgencia.addView(rbtnAlta);
-            rgpUrgencia.addView(rbtnMedia);
-            rgpUrgencia.addView(rbtnBaja);
+            rgpPrioridad.addView(rbtnAlta);
+            rgpPrioridad.addView(rbtnMedia);
+            rgpPrioridad.addView(rbtnBaja);
             //Agregamos el radio group al layout de las formulas.
-            layoutFormula.addView(rgpUrgencia);
+            layoutFormula.addView(rgpPrioridad);
             //Agregamos el layout de la formula al  layout base
             layoutBase.addView(layoutFormula);
-            allRgs.add(rgpUrgencia);
+            allRgs.add(rgpPrioridad);
             //Incrementamos la variable j para poder seguir asignando id a las prioridades.
             j = j +3;
         }
