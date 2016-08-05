@@ -56,16 +56,16 @@ public class Encuesta extends AppCompatActivity {
 
         //Hacer una consulta para coger todas las formulas de la base de datos.
         Cursor abreviatura = db.rawQuery(" SELECT  Abreviatura FROM Formulas", null);
-        final LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
 
         //Se crea un parametro auxiliar para cuestiones de diseño con el TextView y el EditText
-        LinearLayout.LayoutParams layoutFormato = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lytFormato = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
 
         //Creamos otro parametro para el formato del texto de las columnas
 
-        LinearLayout.LayoutParams layoutFormato2 = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lytFormato2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 2.5f);
 
@@ -90,18 +90,18 @@ public class Encuesta extends AppCompatActivity {
         int j = 0;
 
         //Vamos a crear primero la cabecera
-        LinearLayout layoutCabecera = new LinearLayout(this);
-        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        layoutCabecera.setBackgroundResource(R.drawable.customborder);
+        LinearLayout lytCabecera = new LinearLayout(this);
+        lytCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        lytCabecera.setBackgroundResource(R.drawable.customborder);
 
 
         TextView txtCabecera1 = new TextView(this);
         txtCabecera1.setText("Formulas");
-        txtCabecera1.setLayoutParams(layoutFormato);
+        txtCabecera1.setLayoutParams(lytFormato);
 
         TextView txtCabecera2 = new TextView(this);
         txtCabecera2.setText("Prioridad");
-        txtCabecera2.setLayoutParams(layoutFormato2);
+        txtCabecera2.setLayoutParams(lytFormato2);
 
         //TextView textPrioridad = new TextView(this);
         //textPrioridad.setText("Prioridades");
@@ -112,12 +112,12 @@ public class Encuesta extends AppCompatActivity {
 
 
 
-        layoutCabecera.addView(txtCabecera1);
-        layoutCabecera.addView(txtCabecera2);
-        //layoutCabecera.addView(textPrioridad);
+        lytCabecera.addView(txtCabecera1);
+        lytCabecera.addView(txtCabecera2);
+        //lytCabecera.addView(textPrioridad);
 
 
-        layoutBase.addView(layoutCabecera);
+        lytBase.addView(lytCabecera);
 
 
 
@@ -127,16 +127,16 @@ public class Encuesta extends AppCompatActivity {
         for(int i=0;i< numeroFormulas; i++)
         {
             //Creamos un linear layout auxiliar donde iremos introduciendo los elementos que queremos mostrar
-            LinearLayout layoutFormula = new LinearLayout(this);
-            layoutFormula.setOrientation(LinearLayout.HORIZONTAL);
-            layoutFormula.setBackgroundResource(R.drawable.customborder2);
+            LinearLayout lytFormula = new LinearLayout(this);
+            lytFormula.setOrientation(LinearLayout.HORIZONTAL);
+            lytFormula.setBackgroundResource(R.drawable.customborder2);
             //El nombre de la formula
             TextView txtNombreFormula = new TextView(this);
             txtNombreFormula.setText(abreviatura.getString(0));
-            txtNombreFormula.setLayoutParams(layoutFormato);
+            txtNombreFormula.setLayoutParams(lytFormato);
             abreviatura.moveToNext();
             txtNombreFormula.setTypeface(null, Typeface.BOLD);
-            layoutFormula.addView(txtNombreFormula);
+            lytFormula.addView(txtNombreFormula);
             //Otro Linear Layout para los botones
             LinearLayout auxBotones = new LinearLayout(this);
 
@@ -162,9 +162,9 @@ public class Encuesta extends AppCompatActivity {
             rgpPrioridad.addView(RbtnMedia);
             rgpPrioridad.addView(RbtnBaja);
             //auxBotones.addView(rgpPrioridad);
-            layoutFormula.addView(rgpPrioridad);
-            layoutBase.addView(layoutFormula);
-            //layoutBase.addView(auxBotones);
+            lytFormula.addView(rgpPrioridad);
+            lytBase.addView(lytFormula);
+            //lytBase.addView(auxBotones);
             allRgs.add(rgpPrioridad);
             j = j +3;
         }
@@ -193,21 +193,21 @@ public class Encuesta extends AppCompatActivity {
         btnAceptar.setText("Aceptar Resultados");
         btnAceptar.setBackgroundResource(R.drawable.seleccion);
         btnAceptar.setTextColor(Color.parseColor("#FFFFFF"));
-        layoutBase.addView(btnAceptar);
+        lytBase.addView(btnAceptar);
 
         //Creamos un botón limpiar para reiniciar la encuesta y borrar los campos seleccionados.
         final Button btnLimpiar = new Button(this);
         btnLimpiar.setText("Reiniciar encuesta");
         btnLimpiar.setBackgroundResource(R.drawable.seleccion);
         btnLimpiar.setTextColor(Color.parseColor("#FFFFFF"));
-        layoutBase.addView(btnLimpiar);
+        lytBase.addView(btnLimpiar);
 
         //Creamos un boton inicio para volver al principio de la explicación.
         final Button btnInicio = new Button(this);
         btnInicio.setText("Explicamelo de nuevo");
         btnInicio.setBackgroundResource(R.drawable.seleccion);
         btnInicio.setTextColor(Color.parseColor("#FFFFFF"));
-        layoutBase.addView(btnInicio);
+        lytBase.addView(btnInicio);
         //final TextView resultado = new TextView(this);
         //cadena = "";
 

@@ -47,7 +47,7 @@ public class FormulasPrioridad extends AppCompatActivity {
 
         SQLiteDatabase db = usdbh.getWritableDatabase();
 
-        LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
+        LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
 
         Cursor cursorPrioridad = null;
 
@@ -107,7 +107,7 @@ public class FormulasPrioridad extends AppCompatActivity {
             cursorPrioridad.moveToNext();
             //Le aplico el layout al boton de cada formula para darle un mejor formato
             btnFormula.setBackgroundDrawable(drawable);
-            layoutBase.addView(btnFormula);
+            lytBase.addView(btnFormula);
 
             btnFormula.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -103,14 +103,14 @@ public class FormulasSQLiteHelper extends SQLiteOpenHelper {
 //Formula
         db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Bibliografia) VALUES ('3',' CHA2DS2-VASc, Escala de Riesgo de AVC por Fibrilación Atrial','CHA2DS2-VASc','escala','Luis Jiménez Murillo,Francisco Javier Montero Pérez;Medicina de urgencias y emergencias. 2015. 5 edición. p. 166. ISBN: 978-84-9022-454-0 .');");
 //Parámetros
-        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('11','Insuficiencia cardíaca congestiva/disfunción ventricular izquierda','3','lógico');");
-        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('12','Hipertensión arterial','3','lógico');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('11','Insuficiencia cardíaca congestiva/disfunción ventricular izquierda','3','logico');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('12','Hipertensión arterial','3','logico');");
 //Hipertensión lleva tilde tenedlo en cuenta para probar el correcto uso de las tildes
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro,Medida,Minimo,Maximo) VALUES ('13','Edad','3','numero','años','0','120');");
-        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('14','Diabetes mellitus','3','lógico');");
-        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('15','Accidente cerebrovascular/tromboembolia','3','lógico');");
-        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('16','Enfermedad vascular','3','lógico');");
-        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('17','Sexo femenino','3','lógico');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('14','Diabetes mellitus','3','logico');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('15','Accidente cerebrovascular/tromboembolia','3','logico');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('16','Enfermedad vascular','3','logico');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('17','Sexo femenino','3','logico');");
 //Resultado
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('18','CHA2DS2-VASc','3','resultado');");
 //Criterios de puntuación
@@ -439,6 +439,25 @@ public class FormulasSQLiteHelper extends SQLiteOpenHelper {
 //Criterios de puntuación
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('131','135','Joven','0.5*Peso');");
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('132','135','Edad avanzada','0.3*Peso');");
+
+
+        //Indice de masa corporal
+        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Expresion,Bibliografia) VALUES ('23','Índice de masa corporal ','Índice de masa corporal ','general','Peso/Estatura^2','Wikipedia:Índice de masa corporal, 05-08-2016');");
+
+//Parámetros.
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro,Medida,Minimo,Maximo) VALUES ('137','Peso','23','numero','kg','25','400');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro,Medida,Minimo,Maximo) VALUES ('138','Estatura','23','numero','metros','1','2.50');");
+        db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro,Medida,Minimo,Maximo) VALUES ('139','Indice de masa corporal','23','resultado','kg/metros cuadrados','','');");
+
+//Criterios de puntuación
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('133','139','x < 16','Delgadez severa');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('134','139','x >= 16 &&  x <= 16.99','Delgadez moderada');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('135','139','x >= 17 &&  x <= 18.49','Delgadez leve');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('136','139','x >= 18.5 && x <= 24.99','Normal');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('137','139','x >= 25 && x <= 29.99','Preobeso');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('138','139','x >= 30 && x <= 34.99','Obesidad leve');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('139','139','x >= 35 && x <= 39.99','Obesidad media');");
+        db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('140','139','x >= 40','Obesidad mórbida');");
 
 
 

@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * Created by Alfonso on 20/03/2016.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
 
  */
 
@@ -70,15 +70,15 @@ public class CambiarConfiguracion extends AppCompatActivity {
 
 
         //Cargamos el layout del xml de nuestra actividad , en este layout agregaremos dinamicamente los elementos que necesitemos.
-        final LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
 
         //Creamos dos layout auxiliares que llevaran un formato diferentes para dar mejor apariencia a la página. 
-        LinearLayout.LayoutParams layoutFormato = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lytFormato = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
 
 
-        LinearLayout.LayoutParams layoutFormato2 = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lytFormato2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 2.5f);
 
@@ -111,21 +111,21 @@ public class CambiarConfiguracion extends AppCompatActivity {
          */
 
         //Vamos a crear primero la cabecera, para ello creamos un layout 
-        LinearLayout layoutCabecera = new LinearLayout(this);
-        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        layoutCabecera.setBackgroundResource(R.drawable.customborder);
+        LinearLayout lytCabecera = new LinearLayout(this);
+        lytCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        lytCabecera.setBackgroundResource(R.drawable.customborder);
 
 
         //Creamos un TextView para mostrar la palabra Fórmulas en la parte superior.
         TextView txtCabecera1 = new TextView(this);
         txtCabecera1.setText("Fórmulas");
-        txtCabecera1.setLayoutParams(layoutFormato);
+        txtCabecera1.setLayoutParams(lytFormato);
 
 
         //Creamos un TextView para mostrar la palabra Prioridad en la parte superior.
         TextView txtCabecera2 = new TextView(this);
         txtCabecera2.setText("Prioridad");
-        txtCabecera2.setLayoutParams(layoutFormato2);
+        txtCabecera2.setLayoutParams(lytFormato2);
 
 
         //Ponemos las cabeceras en negrita para que se vean mejor.
@@ -135,13 +135,13 @@ public class CambiarConfiguracion extends AppCompatActivity {
         
 
         //Agregamos los TextView al layout de la cabecera
-        layoutCabecera.addView(txtCabecera1);
-        layoutCabecera.addView(txtCabecera2);
-        //layoutCabecera.addView(textPrioridad);
+        lytCabecera.addView(txtCabecera1);
+        lytCabecera.addView(txtCabecera2);
+        //lytCabecera.addView(textPrioridad);
 
         
         //agregamos la cabecera al layout base de la página.    
-        layoutBase.addView(layoutCabecera);
+        lytBase.addView(lytCabecera);
 
   
         
@@ -150,13 +150,13 @@ public class CambiarConfiguracion extends AppCompatActivity {
             //Creamos una cadena para indicar que prioridad tiene la formula en esta posición
             String TipoPrioridad = "";
             //Creamos un linear layout auxiliar donde iremos introduciendo los elementos que queremos mostrar
-            LinearLayout layoutFormula = new LinearLayout(this);
-            layoutFormula.setOrientation(LinearLayout.HORIZONTAL);
-            layoutFormula.setBackgroundResource(R.drawable.customborder2);
+            LinearLayout lytFormula = new LinearLayout(this);
+            lytFormula.setOrientation(LinearLayout.HORIZONTAL);
+            lytFormula.setBackgroundResource(R.drawable.customborder2);
             //Creamos TexView donde iremos poniendo el nombre de cada una de las fórmulas accediendo al cursor.
             TextView txtNombreFormula = new TextView(this);
             txtNombreFormula.setText(cursorAbreviatura.getString(0));
-            txtNombreFormula.setLayoutParams(layoutFormato);
+            txtNombreFormula.setLayoutParams(lytFormato);
 
             //Obtenemos la prioridad para esa formula y la almacenamos en la variable TipoPrioridad.
             TipoPrioridad = cursorAbreviatura.getString(1);
@@ -165,7 +165,7 @@ public class CambiarConfiguracion extends AppCompatActivity {
             cursorAbreviatura.moveToNext();
             //Ponemos el nombre de la formula en negrita.
             txtNombreFormula.setTypeface(null, Typeface.BOLD);
-            layoutFormula.addView(txtNombreFormula);
+            lytFormula.addView(txtNombreFormula);
             //Otro Linear Layout para los botones
             //LinearLayout auxBotones = new LinearLayout(this);
 
@@ -211,9 +211,9 @@ public class CambiarConfiguracion extends AppCompatActivity {
             rgpPrioridad.addView(rbtnMedia);
             rgpPrioridad.addView(rbtnBaja);
             //Agregamos el radio group al layout de las formulas.
-            layoutFormula.addView(rgpPrioridad);
+            lytFormula.addView(rgpPrioridad);
             //Agregamos el layout de la formula al  layout base
-            layoutBase.addView(layoutFormula);
+            lytBase.addView(lytFormula);
             allRgs.add(rgpPrioridad);
             //Incrementamos la variable j para poder seguir asignando id a las prioridades.
             j = j +3;
@@ -246,7 +246,7 @@ public class CambiarConfiguracion extends AppCompatActivity {
         btnAceptar.setBackgroundResource(R.drawable.seleccion);
         btnAceptar.setTextColor(Color.parseColor("#FFFFFF"));
         //Agregamos el btnAceptar al layoutBase
-        layoutBase.addView(btnAceptar);
+        lytBase.addView(btnAceptar);
 
         /*
         //creamos un botón limpiar para reiniciar la encuesta dejando todos los campos a cero.
@@ -262,7 +262,7 @@ public class CambiarConfiguracion extends AppCompatActivity {
         btnInicio.setText("Volver a Inicio");
         btnInicio.setBackgroundResource(R.drawable.seleccion);
         btnInicio.setTextColor(Color.parseColor("#FFFFFF"));
-        layoutBase.addView(btnInicio);
+        lytBase.addView(btnInicio);
         //final TextView resultado = new TextView(this);
         //cadena = "";
 

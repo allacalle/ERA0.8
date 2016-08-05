@@ -2,14 +2,11 @@ package com.example.alfonso.era04b;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +14,7 @@ import com.example.alfonso.era04b.Clases.FormulasSQLiteHelper;
 
 /**
  * Created by Alfonso on 18/03/2016.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
 
  */
 
@@ -31,7 +28,7 @@ public class AyudaGeneral extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
       //Accedemos a nuestro layout vacio que rellenaremos con los campos despues
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
 
         //Se crea un parametro auxiliar para cuestiones de diseño con el TextView y el EditText
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
@@ -74,21 +71,21 @@ public class AyudaGeneral extends AppCompatActivity {
         for(int i=0;i< numeroFormulas; i++)
         {
             //Creamos un linear layout auxiliar donde iremos introduciendo los elementos que queremos mostrar
-            LinearLayout layoutAuxTexto = new LinearLayout(this);
-            layoutAuxTexto.setOrientation(LinearLayout.VERTICAL);
-            layoutAuxTexto.setBackgroundResource(R.drawable.customborder2);
+            LinearLayout lytAuxTexto = new LinearLayout(this);
+            lytAuxTexto.setOrientation(LinearLayout.VERTICAL);
+            lytAuxTexto.setBackgroundResource(R.drawable.customborder2);
             //Creamos un textView para mostrar el nombre de la formula
             TextView txtNombreFormula = new TextView(this);
             txtNombreFormula.setText(cursorAyuda.getString(0));
             txtNombreFormula.setBackgroundResource(R.drawable.customborder);
-            layoutAuxTexto.addView(txtNombreFormula);
+            lytAuxTexto.addView(txtNombreFormula);
             //Creamos un textView para mostrar el nombre de la referencia bibliográfica.
             TextView txtBibliografia = new TextView(this);
             txtBibliografia.setText(cursorAyuda.getString(1));
             txtBibliografia.setTypeface(null, Typeface.ITALIC);
 
-            layoutAuxTexto.addView(txtBibliografia);
-            lm.addView(layoutAuxTexto);
+            lytAuxTexto.addView(txtBibliografia);
+            lytBase.addView(lytAuxTexto);
             cursorAyuda.moveToNext();
         }
 
@@ -101,7 +98,7 @@ public class AyudaGeneral extends AppCompatActivity {
         btnRegresar.setText("Regresar");
         btnRegresar.setBackgroundResource(R.drawable.seleccion);
         btnRegresar.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnRegresar);
+        lytBase.addView(btnRegresar);
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override

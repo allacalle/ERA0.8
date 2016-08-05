@@ -32,7 +32,7 @@ public class FormulasRecientes extends AppCompatActivity {
         //Boton de atras
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Cargamos el layout base de nuestro xml
-        LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
+        LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
         //Cargamos el boton Inicio de nuestro xml.
         Button BtnInicio = (Button) findViewById(R.id.BtnInicio) ;
 
@@ -126,7 +126,7 @@ public class FormulasRecientes extends AppCompatActivity {
             btnFormula.setBackgroundDrawable(drawable);
 
             //Meto el boton en el layout
-            layoutBase.addView(btnFormula);
+            lytBase.addView(btnFormula);
 
 
             //Definimos la funcion del boton

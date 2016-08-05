@@ -3,16 +3,13 @@ package com.example.alfonso.era04b;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
 /**
  * Created by Alfonso on 18/03/2016.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
 
  */
 

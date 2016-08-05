@@ -1,13 +1,11 @@
 package com.example.alfonso.era04b;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +17,7 @@ import org.w3c.dom.Text;
 
 /**
  * Created by Alfonso on 20/10/2015.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
 
  */
 
@@ -45,7 +43,7 @@ public class AyudaFormula extends AppCompatActivity {
         //Activo el boton atras
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
 
         //Recibimos la id de la formula
         Bundle bundle = this.getIntent().getExtras();
@@ -64,8 +62,8 @@ public class AyudaFormula extends AppCompatActivity {
 
         //Creo un layout auxiliar
         //antes de nada creamos un layaout con un label de nombre de la formula y a su derecho un boton de información.
-        LinearLayout layoutCabecera = new LinearLayout(this);
-        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout lytCabecera = new LinearLayout(this);
+        lytCabecera.setOrientation(LinearLayout.HORIZONTAL);
         //Creo un textview que mostrará el nombre de la formula
         TextView txtNombreDeFormula = new TextView(this);
         txtNombreDeFormula.setText(formulaActual.getNombreCompleto());
@@ -73,11 +71,11 @@ public class AyudaFormula extends AppCompatActivity {
         Button btnAyuda = new Button(this);
         btnAyuda.setText("Ayuda");
         btnAyuda.setLayoutParams(param);
-        layoutCabecera.addView(txtNombreDeFormula);
+        lytCabecera.addView(txtNombreDeFormula);
         //Aplico un borde diferente a la cabecera.
-        layoutCabecera.setBackgroundResource(R.drawable.customborder);
-        assert lm != null;
-        lm.addView(layoutCabecera);
+        lytCabecera.setBackgroundResource(R.drawable.customborder);
+        assert lytBase != null;
+        lytBase.addView(lytCabecera);
 
 
         //Iteramos
@@ -86,11 +84,11 @@ public class AyudaFormula extends AppCompatActivity {
 
             //Creamos un linear layout para cada iteraccón , en el estarán todos los elementos
             //No queremos mostrar los parametros de tipo resultado.
-            LinearLayout layoutDeParametro = new LinearLayout(this);
-            layoutDeParametro.setOrientation(LinearLayout.VERTICAL);
-            layoutDeParametro.setBackgroundColor(Color.parseColor("#D5F8F8"));
+            LinearLayout lytDeParametro = new LinearLayout(this);
+            lytDeParametro.setOrientation(LinearLayout.VERTICAL);
+            lytDeParametro.setBackgroundColor(Color.parseColor("#D5F8F8"));
             //Aplico un borde diferente a este layout secundario
-            layoutDeParametro.setBackgroundResource(R.drawable.customborder2);
+            lytDeParametro.setBackgroundResource(R.drawable.customborder2);
             //Creamos un TextView donde escribiremos el nombre del parametro actual
             TextView txtNombreDeParametro = new TextView(this);
             txtNombreDeParametro.setTypeface(null, Typeface.BOLD);
@@ -100,7 +98,7 @@ public class AyudaFormula extends AppCompatActivity {
                 txtNombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
 
             txtNombreDeParametro.setLayoutParams(param);
-            layoutDeParametro.addView(txtNombreDeParametro);
+            lytDeParametro.addView(txtNombreDeParametro);
             //Ahora dependiendo del tipo de parametro creamos un elemento u otro
             
             
@@ -110,14 +108,13 @@ public class AyudaFormula extends AppCompatActivity {
             if (formulaActual.getParametro(i).getValorMaximo() != formulaActual.getParametro(i).getValorMinimo()) {
 
                 TextView txtValorMinimo = new TextView(this);
-                //Redondeamos el float, no queremos decimales
-                String strValorMinimo = "" + Math.round(formulaActual.getParametro(i).getValorMinimo());
+                String strValorMinimo = "" + formulaActual.getParametro(i).getValorMinimo();
                 txtValorMinimo.setText("Mínimo:" + strValorMinimo + "\t");
                 TextView txtValorMaximo = new TextView(this);
-                String strValorMaximo = "" + Math.round(formulaActual.getParametro(i).getValorMaximo());
+                String strValorMaximo = "" + formulaActual.getParametro(i).getValorMaximo();
                 txtValorMaximo.setText("Máximo:" + strValorMaximo + "");
-                layoutDeParametro.addView(txtValorMinimo);
-                layoutDeParametro.addView(txtValorMaximo);
+                lytDeParametro.addView(txtValorMinimo);
+                lytDeParametro.addView(txtValorMaximo);
             }
             if (formulaActual.getTipoFormula().equals("escala") ) { 
                 //Creamos un TextView para la palabra puntuacion lblPuntuacion 
@@ -125,12 +122,12 @@ public class AyudaFormula extends AppCompatActivity {
                 lblPuntuacion.setTypeface(null, Typeface.BOLD);
                 lblPuntuacion.setText("Puntuación");
                 lblPuntuacion.setBackgroundResource(R.drawable.customborder2);
-                layoutDeParametro.addView(lblPuntuacion);
+                lytDeParametro.addView(lblPuntuacion);
 
 
                 for (int j = 0; j < formulaActual.getParametro(i).contarCriterios(); j++) {
                     //Mostramos los criterios de cada parametro con sus puntuaciones
-                    LinearLayout layoutDeCriterio = new LinearLayout(this);
+                    LinearLayout lytDeCriterio = new LinearLayout(this);
 
                     //Creamos un layout para los criterios.
 
@@ -152,23 +149,23 @@ public class AyudaFormula extends AppCompatActivity {
                         //TxTPuntuacion.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
                     }
 
-                    layoutDeCriterio.addView(txtCriterio);
-                    layoutDeCriterio.setBackgroundResource(R.drawable.customborder3);
+                    lytDeCriterio.addView(txtCriterio);
+                    lytDeCriterio.setBackgroundResource(R.drawable.customborder3);
 
-                    //layoutDeCriterio.addView(TxTPuntuacion);
-                    //layoutDeCriterio.addView(TxTPuntuacion2);
-                    layoutDeParametro.addView(layoutDeCriterio);
+                    //lytDeCriterio.addView(TxTPuntuacion);
+                    //lytDeCriterio.addView(TxTPuntuacion2);
+                    lytDeParametro.addView(lytDeCriterio);
 
 
                 }
             }
 
 
-            lm.addView(layoutDeParametro);
+            lytBase.addView(lytDeParametro);
 
             //Muestra la expresion de la formula si existe.
 
-            //Muestro los parametros (creamos otro layout para esto)
+            //Muestro los parametros (creamos otro lyt para esto)
             //Si existen valores minimos y maximos mostramos:
             // Valor comprendido entre ValorMinimo y ValorMaximo
             // Si tinene criterios:
@@ -186,12 +183,12 @@ public class AyudaFormula extends AppCompatActivity {
         }
 
 
-        //Creamos un layout para mostrar la Expresion de la formula si existe.
-        LinearLayout layoutDeExpresion = new LinearLayout(this);
+        //Creamos un lyt para mostrar la Expresion de la formula si existe.
+        LinearLayout lytDeExpresion = new LinearLayout(this);
         //Le aplicamos un color y un borde específico.
-        layoutDeExpresion.setOrientation(LinearLayout.VERTICAL);
-        layoutDeExpresion.setBackgroundColor(Color.parseColor("#D5F8F8"));
-        layoutDeExpresion.setBackgroundResource(R.drawable.customborder2);
+        lytDeExpresion.setOrientation(LinearLayout.VERTICAL);
+        lytDeExpresion.setBackgroundColor(Color.parseColor("#D5F8F8"));
+        lytDeExpresion.setBackgroundResource(R.drawable.customborder2);
 
 
 
@@ -203,7 +200,7 @@ public class AyudaFormula extends AppCompatActivity {
                 TextView lblFormula = new TextView(this);
                 lblFormula.setTypeface(null, Typeface.BOLD);
                 lblFormula.setText("Formula");
-                layoutDeExpresion.addView(lblFormula);
+                lytDeExpresion.addView(lblFormula);
 
                 for (int i = 0; i < formulaActual.contarParametros(); i++) {
 
@@ -217,14 +214,14 @@ public class AyudaFormula extends AppCompatActivity {
                             TextView txtNombreDeExpresion = new TextView(this);
                             //Mostramos todas las posibles expresiones de la formula
                             txtNombreDeExpresion.setText(formulaActual.getParametro(i).getCriterioPuntuacion(j).getCriterio() + ":" +  formulaActual.getParametro(i).getCriterioPuntuacion(j).getPuntuacion());
-                            layoutDeExpresion.addView(txtNombreDeExpresion);
+                            lytDeExpresion.addView(txtNombreDeExpresion);
 
                         }
                     }
 
 
                 }
-                lm.addView(layoutDeExpresion);
+                lytBase.addView(lytDeExpresion);
             }
 
 
@@ -232,23 +229,23 @@ public class AyudaFormula extends AppCompatActivity {
             {
                 TextView txtNombreDeExpresion = new TextView(this);
                 txtNombreDeExpresion.setText(formulaActual.getExpresion());
-                layoutDeExpresion.addView(txtNombreDeExpresion);
-                lm.addView(layoutDeExpresion);
+                lytDeExpresion.addView(txtNombreDeExpresion);
+                lytBase.addView(lytDeExpresion);
 
             }
 
         }
 
         //Creamos un layout para mostrar la bibliografía de la formula.
-        LinearLayout layoutBibliografia = new LinearLayout(this);
-        layoutBibliografia.setOrientation(LinearLayout.VERTICAL);
-        layoutBibliografia.setBackgroundColor(Color.parseColor("#D5F8F8"));
+        LinearLayout lytBibliografia = new LinearLayout(this);
+        lytBibliografia.setOrientation(LinearLayout.VERTICAL);
+        lytBibliografia.setBackgroundColor(Color.parseColor("#D5F8F8"));
         //Creamos un textView para agregar el campo de bibliografia.
-        layoutBibliografia.setBackgroundResource(R.drawable.customborder2);
+        lytBibliografia.setBackgroundResource(R.drawable.customborder2);
         TextView txtNombreBibliografia = new TextView(this);
         txtNombreBibliografia.setText(formulaActual.getBibliografia());
-        layoutBibliografia.addView(txtNombreBibliografia);
-        lm.addView(layoutBibliografia);
+        lytBibliografia.addView(txtNombreBibliografia);
+        lytBase.addView(lytBibliografia);
 
 
 /*
@@ -256,7 +253,7 @@ public class AyudaFormula extends AppCompatActivity {
         btnRegresar.setText("Regresar");
         btnRegresar.setBackgroundResource(R.drawable.seleccion);
         btnRegresar.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnRegresar);
+        lytBase.addView(btnRegresar);
 
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {

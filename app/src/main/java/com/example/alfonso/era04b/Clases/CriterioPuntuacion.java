@@ -7,8 +7,16 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Created by Alfonso on 11/03/2016.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
  */
+
+//Clase donde se implementara la clase de criterio de puntuación.
+
+//Cada parametro puede contener varios criterios de puntuacion que  ayudan a asignar una puntuación a ese parametro.
+
+//No todos los parametros tienen criterio de puntuacion, pero todos los parametros de una formula de escala lo suelen tener casi siempre
+
+
 public class CriterioPuntuacion
 {
     private Integer IdCriterioPuntuacion;
@@ -68,11 +76,5 @@ public class CriterioPuntuacion
 
 }
 
-
-//Clase donde se implementara la clase de criterio de puntuación.
-
-//Cada parametro puede contener varios criterios de puntuacion que  ayudan a asignar una puntuación a ese parametro.
-
-//No todos los parametros tienen criterio de puntuacion, pero todos los parametros de una formula de escala lo suelen tener casi siempre
 
 

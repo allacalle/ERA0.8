@@ -3,7 +3,7 @@ package com.example.alfonso.era04b;
 
 /**
  * Created by Alfonso on 18/03/2016.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
 
  */
 
@@ -54,7 +54,7 @@ public class CalcularFormula extends AppCompatActivity {
         //Boton atras
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
         Button btnRecientes = (Button) findViewById(R.id.BtnRecientes) ;
         Button btnInicio = (Button) findViewById(R.id.BtnInicio) ;
         //Button BtnAyuda = (Button) findViewById(R.id.BtnAyuda) ;
@@ -93,8 +93,8 @@ public class CalcularFormula extends AppCompatActivity {
 
 
         //antes de nada creamos un layaout con un label de nombre de la formula y a su derecho un boton de información.
-        LinearLayout layoutCabecera = new LinearLayout(this);
-        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout lytCabecera = new LinearLayout(this);
+        lytCabecera.setOrientation(LinearLayout.HORIZONTAL);
         //Creamos un textView donde mostraremos el nombre de la Formula aplicandole un formato distinto.
         TextView txtNombreDeFormula = new TextView(this);
         txtNombreDeFormula.setText(formulaActual.getNombreCompleto());
@@ -104,8 +104,8 @@ public class CalcularFormula extends AppCompatActivity {
         Button btnAyuda = new Button(this);
         btnAyuda.setText("Ayuda");
         btnAyuda.setLayoutParams(param);
-        layoutCabecera.addView(txtNombreDeFormula);
-        layoutCabecera.setBackgroundResource(R.drawable.customborder);
+        lytCabecera.addView(txtNombreDeFormula);
+        lytCabecera.setBackgroundResource(R.drawable.customborder);
 
         
         //tenemos que ver si alguno de los parametros es numero para mostrar o no el boton ayuda.
@@ -114,16 +114,16 @@ public class CalcularFormula extends AppCompatActivity {
                 existenCamposEdit = true;
         }
         
-        lm.addView(layoutCabecera);
+        lytBase.addView(lytCabecera);
 
 
         for (int i = 0; i < formulaActual.contarParametros(); i++) {
-            //Creamos un linear layout para cada iteraccón , en el estarán todos los elementos
-            LinearLayout layoutDeParametro = new LinearLayout(this);
-            layoutDeParametro.setOrientation(LinearLayout.HORIZONTAL);
-            layoutDeParametro.setBackgroundColor(Color.parseColor("#D5F8F8"));
+            //Creamos un linear lyt para cada iteraccón , en el estarán todos los elementos
+            LinearLayout lytDeParametro = new LinearLayout(this);
+            lytDeParametro.setOrientation(LinearLayout.HORIZONTAL);
+            lytDeParametro.setBackgroundColor(Color.parseColor("#D5F8F8"));
             //Creamos un TextView para mostrar el nombre de cada parámetro de la fórmula.
-            layoutDeParametro.setBackgroundResource(R.drawable.customborder2);
+            lytDeParametro.setBackgroundResource(R.drawable.customborder2);
             TextView txtNombreDeParametro = new TextView(this);
             //Ponemos el nombre del parametro en negrita
             txtNombreDeParametro.setTypeface(null, Typeface.BOLD);
@@ -135,7 +135,7 @@ public class CalcularFormula extends AppCompatActivity {
                 txtNombreDeParametro.setText(formulaActual.getParametro(i).getNombre());
 
             txtNombreDeParametro.setLayoutParams(param);
-            layoutDeParametro.addView(txtNombreDeParametro);
+            lytDeParametro.addView(txtNombreDeParametro);
             //Ahora dependiendo del tipo de parametro creamos un elemento u otro
 
             switch (formulaActual.getParametro(i).getTipo()) {
@@ -147,7 +147,7 @@ public class CalcularFormula extends AppCompatActivity {
                     etxValorNumeroParametro.setInputType(InputType.TYPE_CLASS_PHONE);
                     //etxValorNumeroParametro.setId(formulaActual.getParametro(i).getIdParametro());
                     allEds.add(etxValorNumeroParametro);
-                    layoutDeParametro.addView(etxValorNumeroParametro);
+                    lytDeParametro.addView(etxValorNumeroParametro);
                     break;
                 //Se crea un checbox para cada uno de los criterios de puntuacion
                 case "logico":
@@ -155,7 +155,7 @@ public class CalcularFormula extends AppCompatActivity {
                     cbxValorLogicoParametro.setLayoutParams(param2);
                     //cbxValorLogicoParametro.setId(formulaActual.getParametro(i).getIdParametro());
                     allChs.add(cbxValorLogicoParametro);
-                    layoutDeParametro.addView(cbxValorLogicoParametro);
+                    lytDeParametro.addView(cbxValorLogicoParametro);
                     break;
 
                 //Se crea un radial group con un radial button para cada una de las opciones
@@ -170,22 +170,22 @@ public class CalcularFormula extends AppCompatActivity {
                         rgpValorListaParametro.addView(opcion);
                     }
                     allRgs.add(rgpValorListaParametro);
-                    layoutDeParametro.addView(rgpValorListaParametro);
+                    lytDeParametro.addView(rgpValorListaParametro);
 
                     break;
             }
 
-            lm.addView(layoutDeParametro);
+            lytBase.addView(lytDeParametro);
 
         }
 
         /* Se creará un botón que al pulsarlo:
         1 Evalue que todos los datos introducidos sean correctos (Valores Prohibidos, minimos, maximos,
         seleccionar al menos una opcion los radio button)
-        2 Almacenara todos los valores introducidos en un vector que pasaremos a la siguiente pantalla para realizar los calculos.
-         2.1 Para coger los datos debemos acceder a los almacenes donde estan. Para ello sera necesario
-          Crear un bucle que vaya entrando a cada uno de los list<> dependiendo del tipo de datos de cada almacen
-          Como son 3 tipos distintos de list<> necesitamos 3 variables para ir almacenando la posicion actual de cada iterador.
+        2 AlytBaseacenara todos los valores introducidos en un vector que pasaremos a la siguiente pantalla para realizar los calculos.
+         2.1 Para coger los datos debemos acceder a los alytBaseacenes donde estan. Para ello sera necesario
+          Crear un bucle que vaya entrando a cada uno de los list<> dependiendo del tipo de datos de cada alytBaseacen
+          Como son 3 tipos distintos de list<> necesitamos 3 variables para ir alytBaseacenando la posicion actual de cada iterador.
           Cuando tengamos todos los valores podemos crear una cadena que contenta idParametro: valorParametro; IdParametro:valor...
 
          */
@@ -196,7 +196,7 @@ public class CalcularFormula extends AppCompatActivity {
         btnCalcular.setText("Calcular");
         btnCalcular.setBackgroundResource(R.drawable.seleccion);
         btnCalcular.setTextColor(Color.parseColor("#FFFFFF"));
-        lm.addView(btnCalcular);
+        lytBase.addView(btnCalcular);
 
 
 
@@ -212,7 +212,7 @@ public class CalcularFormula extends AppCompatActivity {
         //Creamos un TextView para mostrar el resultado en pantalla. Aumentamos su tamaño para que se vea mejor
         final TextView txtResultado = new TextView(this);
         txtResultado.setTextSize(30);
-        lm.addView(txtResultado);
+        lytBase.addView(txtResultado);
 
 
 
@@ -227,7 +227,7 @@ public class CalcularFormula extends AppCompatActivity {
                 cadenaPrueba = "";
                 //Creamos una variable bool que sera true cuando todos los campos tengan valores correctos
                 boolean camposCorrectos = true;
-                //Creamos una varable donde almacenaremos el indice del parametro incorrecto para despues mostrarlo en pantalla.
+                //Creamos una varable donde alytBaseacenaremos el indice del parametro incorrecto para despues mostrarlo en pantalla.
                 indiceCampoIncorrecto = -1;
                 //Vamos a meter todos los resultados en un vector de cadenas
                 String[] vectorResultados = new String[formulaActual.contarParametros()];

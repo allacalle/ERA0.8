@@ -37,35 +37,35 @@ public class MensajePostEncuesta extends AppCompatActivity {
         //Construimos el mensaje a mostrar
         final String valorRecibido = bundle.getString("Resultado");
         //creamos el layout dinamico como pros!
-        final LinearLayout layoutBase = (LinearLayout) findViewById(R.id.LytContenedor);
+        final LinearLayout lytBase = (LinearLayout) findViewById(R.id.LytContenedor);
         //TextView texto = new TextView(this);
         //texto.setText(valorRecibido);
-        //layoutBase.addView(texto);
+        //lytBase.addView(texto);
 
         //Se crea un parametro auxiliar para cuestiones de diseño con el TextView y el EditText
-        LinearLayout.LayoutParams layoutformato = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lytformato = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
 
         //Creamos otro parametro para el formato del texto de las columnas
 
-        LinearLayout.LayoutParams layoutformato2 = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lytformato2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 2.5f);
 
         //Vamos a crear primero la cabecera
-        LinearLayout layoutCabecera = new LinearLayout(this);
-        layoutCabecera.setOrientation(LinearLayout.HORIZONTAL);
-        layoutCabecera.setBackgroundResource(R.drawable.customborder);
+        LinearLayout lytCabecera = new LinearLayout(this);
+        lytCabecera.setOrientation(LinearLayout.HORIZONTAL);
+        lytCabecera.setBackgroundResource(R.drawable.customborder);
 
 
         TextView txtCabecera1 = new TextView(this);
         txtCabecera1.setText("Formulas");
-        txtCabecera1.setLayoutParams(layoutformato);
+        txtCabecera1.setLayoutParams(lytformato);
 
         TextView txtCabecera2 = new TextView(this);
         txtCabecera2.setText("Prioridad");
-        txtCabecera2.setLayoutParams(layoutformato2);
+        txtCabecera2.setLayoutParams(lytformato2);
 
         //TextView textPrioridad = new TextView(this);
         //textPrioridad.setText("Prioridades");
@@ -76,12 +76,12 @@ public class MensajePostEncuesta extends AppCompatActivity {
 
 
 
-        layoutCabecera.addView(txtCabecera1);
-        layoutCabecera.addView(txtCabecera2);
-        //layoutCabecera.addView(textPrioridad);
+        lytCabecera.addView(txtCabecera1);
+        lytCabecera.addView(txtCabecera2);
+        //lytCabecera.addView(textPrioridad);
 
 
-        layoutBase.addView(layoutCabecera);
+        lytBase.addView(lytCabecera);
 
 
 
@@ -118,13 +118,13 @@ public class MensajePostEncuesta extends AppCompatActivity {
             //El nombre de la formula
             TextView txtAbreviatura = new TextView(this);
             txtAbreviatura.setText(identificadores.getString(1));
-            txtAbreviatura.setLayoutParams(layoutformato);
+            txtAbreviatura.setLayoutParams(lytformato);
             identificadores.moveToNext();
             txtAbreviatura.setTypeface(null, Typeface.BOLD);
             auxTexto.addView(txtAbreviatura);
             TextView TxtPrioridad = new TextView(this);
             TxtPrioridad.setText(prioridad[i]);
-            TxtPrioridad.setLayoutParams(layoutformato2);
+            TxtPrioridad.setLayoutParams(lytformato2);
             TxtPrioridad.setTypeface(null, Typeface.BOLD);
 
             //Asignamos un color a cada prioridad
@@ -133,7 +133,7 @@ public class MensajePostEncuesta extends AppCompatActivity {
 
             auxTexto.addView(TxtPrioridad);
 
-            layoutBase.addView(auxTexto);
+            lytBase.addView(auxTexto);
 
 
         }
@@ -146,14 +146,14 @@ public class MensajePostEncuesta extends AppCompatActivity {
         btnRegresar.setBackgroundResource(R.drawable.seleccion);
         btnRegresar.setTextColor(Color.parseColor("#FFFFFF"));
 
-        layoutBase.addView(btnRegresar);
+        lytBase.addView(btnRegresar);
 
         Button btnAceptar = new Button(this);
         btnAceptar.setText("Aceptar Encuesta");
         btnAceptar.setBackgroundResource(R.drawable.seleccion);
         btnAceptar.setTextColor(Color.parseColor("#FFFFFF"));
 
-        layoutBase.addView(btnAceptar);
+        lytBase.addView(btnAceptar);
 
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {

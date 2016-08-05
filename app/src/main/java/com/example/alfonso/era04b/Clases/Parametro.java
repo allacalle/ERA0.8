@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Created by Alfonso on 20/10/2015.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
 
  */
 
@@ -23,7 +23,7 @@ public class Parametro
     private float ValorMinimo;
     private float ValorMaximo;
     //Este campo almacenara el valor de la suma total de la escala.
-    private float PuntuacionEscala ;
+    private float PuntuacionEscala = 0;
 
        /*
          PROC Parametro (Constructor de la clase)
@@ -60,10 +60,10 @@ public class Parametro
         //En principio se asigna aunque sea NULL ya que no deberia dar problema***
 
         //Asignamos el valor minimo que puede tener el parametro
-        setValorMinimo(cursorParametros.getInt(3));
+        setValorMinimo(cursorParametros.getFloat(3));
 
         //Asignamos el valor maximo que puede tener el parametro
-        setValorMaximo(cursorParametros.getInt(4));
+        setValorMaximo(cursorParametros.getFloat(4));
 
         Cursor cursorCriterios = db.rawQuery("SELECT IdCriterioPuntuacion FROM CriteriosPuntuacion  WHERE IdParametro = '" + getIdParametro() + "'  ", null);
         cursorCriterios.moveToFirst();
@@ -187,12 +187,12 @@ public class Parametro
     }
 
     //Asigna el valor maximo a un parametro
-    public void setValorMaximo(int valorMaximo) {
+    public void setValorMaximo(float valorMaximo) {
         ValorMaximo = valorMaximo;
     }
 
     //Asigna el valor minimo a un parametro
-    public void setValorMinimo(int valorMinimo) {
+    public void setValorMinimo(float valorMinimo) {
         ValorMinimo = valorMinimo;
     }
 
@@ -249,7 +249,8 @@ public class Parametro
             }
         }
 
-        return resultado;
+
+        return resultado ;
     }
 
 

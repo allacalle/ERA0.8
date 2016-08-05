@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * Created by Alfonso on 20/10/2015.
- * Ultima modificación: 20/07/2016
+ * Ultima modificación: 04/08/2016
 
  */
 
@@ -265,8 +265,14 @@ public class Formula
 
 
         //Si el parametro resultado tiene criterios de puntuacion con su id hay que evaluar el resultado.
-        if (getResultado().contarCriterios() > 0)
-            resultado =  evaluarResultado(resultado);
+        if (getResultado().contarCriterios() > 0) {
+            //Guardamos el resultado numerico
+            String auxResultado = resultado;
+            //colocamos el resultado numerico junto al interpretado
+            resultado = evaluarResultado(resultado) + " " + auxResultado ; ;
+        }
+
+        //TODO Deberia agregar la puntuación del resultado y en la medida que se trata y meterlo en el resultado antes de mandarlo.
 
 
         getResultado().setValor(resultado);
@@ -295,8 +301,9 @@ public class Formula
         getResultado().setPuntuacionEscala(contador);
 
         //Si el parametro resultado tiene criterios de puntuacion con su id hay que evaluar el resultado.
-        if (getResultado().contarCriterios() > 0)
-            resultado = evaluarResultado(resultado);
+        if (getResultado().contarCriterios() > 0) {
+            resultado = evaluarResultado(resultado) + "\n Puntuación:" + contador;
+        }
 
         getResultado().setValor(resultado);
 
