@@ -334,6 +334,9 @@ public class CalcularFormula extends AppCompatActivity {
                     //Calculamos los resultados.
                     formulaActual.calcularFormula();
 
+                    //si el resultado es un numero lo redondeamos.
+
+
                     String resultadoCriterios = "";
 
                     //Vamos a mostrar los criterios y sus puntuaciones para poder evaluar que funciona correctamente.

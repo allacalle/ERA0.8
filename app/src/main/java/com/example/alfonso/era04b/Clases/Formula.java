@@ -258,9 +258,10 @@ public class Formula
                 expression.and(getParametro(i).getNombre(), getParametro(i).getValor());
         }
 
-        //Si el parametro resultado tiene
 
-        resultado =  expression.eval().toString() ;
+
+        //Convertimos el bigDecimal de Expresion en String utilizando toPlainString para que muestre el número sin notación científica.
+        resultado =  expression.eval().toPlainString() ;
 
 
 
