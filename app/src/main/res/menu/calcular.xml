@@ -7,14 +7,14 @@
         android:icon="@android:drawable/ic_menu_help"
         android:title="@string/ayuda"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 
 
     <item android:id="@+id/error"
         android:icon="@android:drawable/ic_dialog_email"
-        android:title="@string/busqueda"
+        android:title="@string/reportar_error"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 
 
 </menu>

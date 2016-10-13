@@ -1,17 +1,19 @@
 <resources>
     <string name="app_name">ERA</string>
-    <string name="Bienvenida">Bienvenida a ERA (Emergency Assistance) una aplicación creada para ayudar al personal médico que trabaja en Urgencia. Para saber como utilizar ERA pulse en siguiente, sino es la primera vez que la utiliza  puede pulsar Omitir Explicación. </string>
-    <string name="PantallaUno">Con ERA podrá resolver de forma rápida fórmulas como Child-Pugh ,TIMI o Aclaramiento de creatinina. Estas fórmulas han sido extraídos de documentación que puede consultar en el botón Ayuda de la aplicación. </string>
+    <string name="Bienvenida">Bienvenido/a a ERA (Emergency Assistance) una aplicación creada para ayudar al personal sanitario que trabaja en Urgencias permitiéndole resolver sus fórmulas más utilizadas de manera rápida y efectiva. Para saber como utilizar ERA pulse en siguiente. Si no es la primera vez que la utiliza  pulse Omitir Explicación</string>
+    <string name="PantallaUno">Con ERA podrá resolver de forma rápida fórmulas como Child-Pugh ,TIMI o Aclaramiento de creatinina. Estas fórmulas han sido extraídos de documentación  científica que puede consultar en el botón Ayuda de la aplicación. </string>
     <string name="title_activity_bienvenida">Bienvenidoooo </string>
     <string name="PantallaDos">Antes de empezar a utilizar sus fórmulas debemos realizar algunos pasos para el correcto uso de la aplicación. ERA utiliza un sistema de prioridades para encontrar sus fórmulas de la manera rápida y sencilla.    </string>
-    <string name="PantallaTres">  El sistema es similar al semáforo de prioridades utilizado en Urgencia que utiliza los colores Rojo, Amarillo y Verde. Una vez configurada ERA podrá acceder por ejemplo a las formulas que usted considere de Alta prioridad pulsando el botón Rojo. </string>
-    <string name="PantallaCuatro"> Para  personalizar ERA deberá realizar una encuesta. En esta encuesta deberá asignar una prioridad a cada una de las formulas que se le muestren por pantalla. Al completarla tendrá ERA configurada y recuerde que puede cambiar esta Configuración en cualquier momento desde el botón Configuración.  </string>
+    <string name="PantallaTres">El sistema para organizar sus fórmulas es similar al semáforo utilizado en Urgencias.Seleccione el color rojo si usa la fórmula frecuentemente, el amarillo si las utiliza alguna vez  y el verde si las emplea poco. </string>
+    <string name="PantallaCuatro">Recuerde que puede cambiar esta Configuración en cualquier momento desde el botón Configuración.  </string>
     <string name="mensaje_cambiarConfiguración">ERA le permite cambiar la configuración de sus formulas siempre que lo desee. Para cambiar su configuración pulse en Cambiar Configuración , para volver a la página de inicio pulse en Regresar</string>
     <string name="cambiar_configuracion">Cambiar Configuración</string>
     <string name="regresar">Regresar</string>
     <string name="busqueda">busqueda</string>
+    <string name="acerca_de">Acerca de</string>
     <string name="configuraci_n">Configuración</string>
     <string name="reportar_error">Reportar Error</string>
     <string name="ayuda">Ayuda</string>
     <string name="Empezar">Enhorabuena ya tiene configurada ERA. Recuerde que puede cambiar esta configuración desde el botón Configuración en cualquier momento. </string>
+    <string name="solicitar_formula">Solicitar fórmula</string>
 </resources>

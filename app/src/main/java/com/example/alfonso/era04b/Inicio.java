@@ -279,6 +279,19 @@ public class Inicio extends AppCompatActivity {
                 //metodoEdit()
                 //info.setText("Se presionó Editar");
                 return true;
+            case R.id.acercaDe:
+                intent =
+                        new Intent(Inicio.this, AcercaDe.class);
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+            case R.id.solicitarFormula:
+                intent =
+                        new Intent(Inicio.this, SolicitarFormula.class);
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }

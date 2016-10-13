@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Header aligned to top -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#91F8F9"
+        android:orientation="horizontal"
+        android:gravity="center" >
+
+
+
+    </LinearLayout>
+
+    <!-- Footer aligned to bottom -->
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#91F8F9"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Otros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#91F8F9"
+        android:orientation="vertical"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center" >
+
+        <TextView android:id="@+id/LblEtiqueta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Creador: Alfonso Lacalle García"
+            android:background="#D5F8F8"
+            android:textSize="20sp"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:gravity="top"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_margin="10sp"
+            android:typeface="monospace"/>
+
+        <TextView android:id="@+id/LblEtiqueta2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo electronico: allacalle@gmail.com"
+            android:background="#D5F8F8"
+            android:textSize="20sp"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:gravity="top"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_margin="10sp"
+            android:typeface="monospace"/>
+
+
+        <TextView android:id="@+id/LblEtiqueta3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefono : XXXX"
+            android:background="#D5F8F8"
+            android:textSize="20sp"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:gravity="top"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_margin="10sp"
+            android:typeface="monospace"/>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+    <!-- Inflate the contents of the ScrollView dynamicaly -->
+
+
+</RelativeLayout>
