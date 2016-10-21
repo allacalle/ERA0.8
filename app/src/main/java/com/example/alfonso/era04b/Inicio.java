@@ -253,6 +253,7 @@ public class Inicio extends AppCompatActivity {
             case R.id.error:
                 //metodoAdd()
                 //info.setText("Se presionó Añadir");
+                /*
                 String[] to = { "eracontacto@yopmail.com", "eracontacto@yopmail.com" };
                 String[] cc = { "eracontacto@yopmail.com" };
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -265,6 +266,11 @@ public class Inicio extends AppCompatActivity {
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "");
                 emailIntent.setType("message/rfc822");
                 startActivity(Intent.createChooser(emailIntent, "Email "));
+                */
+                Intent intent =
+                        new Intent(Inicio.this, ReportarError.class);
+                //Iniciamos la nueva actividad
+                startActivity(intent);
 
                 return true;
             case R.id.busqueda:
@@ -272,7 +278,7 @@ public class Inicio extends AppCompatActivity {
                 //info.setText("Se presionó Buscar");
                 return true;
             case R.id.configuracion:
-                Intent intent =
+                 intent =
                         new Intent(Inicio.this, CambiarConfiguracion.class);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
@@ -280,15 +286,20 @@ public class Inicio extends AppCompatActivity {
                 //info.setText("Se presionó Editar");
                 return true;
             case R.id.acercaDe:
-                intent =
+                Intent intent2 =
                         new Intent(Inicio.this, AcercaDe.class);
                 //Iniciamos la nueva actividad
-                startActivity(intent);
+                startActivity(intent2);
+                return true;
             case R.id.solicitarFormula:
-                intent =
+                Intent intent3 =
                         new Intent(Inicio.this, SolicitarFormula.class);
                 //Iniciamos la nueva actividad
-                startActivity(intent);
+                startActivity(intent3);
+                return true;
+
+
+
 
 
 

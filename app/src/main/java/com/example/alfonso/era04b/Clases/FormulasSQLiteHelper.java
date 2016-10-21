@@ -130,7 +130,7 @@ public class FormulasSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('48','18','x >= 2','Riesgo Moderado-Alto. anticoagulación, salvo contraindicación.');");
 //Pneumonia Severity Index diagnostico inicial
 //Formula
-        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Bibliografia) VALUES ('4','Pneumonia Severity Index diagnostico inicial','PSI inicial','escala','Fine, MJ; Auble, TE; Yealy, DM; Hanusa, BH; Weissfeld, LA; Singer, DE; Coley, CM; Marrie, TJ; Kapoor, WN; et al. (Jan 1997).A prediction rule to identify low-risk patients with community-acquired pneumonia. N Engl J Med 336 (4): 243–250. doi:10.1056/NEJM199701233360402');");
+        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Bibliografia) VALUES ('4','Pneumonia Severity Index diagnostico inicial','Pneumonia Severity Index diagnostico inicial','escala','Fine, MJ; Auble, TE; Yealy, DM; Hanusa, BH; Weissfeld, LA; Singer, DE; Coley, CM; Marrie, TJ; Kapoor, WN; et al. (Jan 1997).A prediction rule to identify low-risk patients with community-acquired pneumonia. N Engl J Med 336 (4): 243–250. doi:10.1056/NEJM199701233360402');");
         //Parámetros
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('19','Edad > 50 años','4','logico');");
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('20','Enfermedad neoplásica','4','logico');");
@@ -162,7 +162,7 @@ public class FormulasSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('61','30','x < 1','Bajo I. Mortalidad 0.1% . Domicilio.');");
 //Pneumonia Severity Index puntuación
 //Formula
-        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Bibliografia) VALUES ('5','Pneumonia Severity Index puntuación','PSI puntuación','escala','Fine, MJ; Auble, TE; Yealy, DM; Hanusa, BH; Weissfeld, LA; Singer, DE; Coley, CM; Marrie, TJ; Kapoor, WN; et al. (Jan 1997).A prediction rule to identify low-risk patients with community-acquired pneumonia. N Engl J Med 336 (4): 243–250. doi:10.1056/NEJM199701233360402');");
+        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Bibliografia) VALUES ('5','Pneumonia Severity Index puntuación','Pneumonia Severity Index puntuación','escala','Fine, MJ; Auble, TE; Yealy, DM; Hanusa, BH; Weissfeld, LA; Singer, DE; Coley, CM; Marrie, TJ; Kapoor, WN; et al. (Jan 1997).A prediction rule to identify low-risk patients with community-acquired pneumonia. N Engl J Med 336 (4): 243–250. doi:10.1056/NEJM199701233360402');");
 //Parámetros
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro)  VALUES ('31','Sexo femenino','5','logico');");
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro,Medida,Minimo,Maximo) VALUES ('32','Edad','5','numero','años','0','120');");
@@ -213,7 +213,7 @@ public class FormulasSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('85','50','x > 130','Alto V. Ingreso hospitalario (planta o UCI)');");
 //TIMI Puntuacion de riesgo
 //Formula
-        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Bibliografia) VALUES ('6','The Thrombolysis In Myocardial Infarction (TIMI)','TIMI','escala','Morrow DA1, Antman EM, Charlesworth A, Cairns R, Murphy SA, de Lemos JA, Giugliano RP, McCabe CH, Braunwald E, TIMI risk score for ST-elevation myocardial infarction: A convenient, bedside, clinical score for risk assessment at presentation: An intravenous nPA for treatment of infarcting myocardium early II trial substudy, Clinical Investigation and Reports, 2000; 102: 2031-2037 doi: 10.1161/01.CIR.102.17.2031');");
+        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Bibliografia) VALUES ('6','The Thrombolysis In Myocardial Infarction (TIMI)','The Thrombolysis In Myocardial Infarction (TIMI)','escala','Morrow DA1, Antman EM, Charlesworth A, Cairns R, Murphy SA, de Lemos JA, Giugliano RP, McCabe CH, Braunwald E, TIMI risk score for ST-elevation myocardial infarction: A convenient, bedside, clinical score for risk assessment at presentation: An intravenous nPA for treatment of infarcting myocardium early II trial substudy, Clinical Investigation and Reports, 2000; 102: 2031-2037 doi: 10.1161/01.CIR.102.17.2031');");
 //Parámetros
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro,Medida,Minimo,Maximo) VALUES ('51','Edad','6','numero','años','0','120');");
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro) VALUES ('52','Diabetes mellitus o  hipertensión arterial  o angina','6','logico');");
@@ -301,7 +301,7 @@ public class FormulasSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO CriteriosPuntuacion (IdCriterioPuntuacion,IdParametro,Criterio,Puntuacion) VALUES ('126','76','x >= 3','Probabilidad alta de trombosis venosa profunda');");
 //BUN:Creatinina (S) relación
 //Formula
-        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Expresion,Bibliografia) VALUES ('9','BUN:Creatinina (S) relación ','BUN','general','Urea/2.14','Luis Jiménez Murillo,Francisco Javier Montero Pérez;Medicina de urgencias y emergencias. 2015. 5 edición. p. 34. ISBN: 978-84-9022-454-0 . ');");
+        db.execSQL("INSERT INTO Formulas (IdFormula,NombreCompleto,Abreviatura,Tipo,Expresion,Bibliografia) VALUES ('9','BUN:Creatinina (S) relación','BUN:Creatinina (S) relación','general','Urea/2.14','Luis Jiménez Murillo,Francisco Javier Montero Pérez;Medicina de urgencias y emergencias. 2015. 5 edición. p. 34. ISBN: 978-84-9022-454-0 . ');");
 //Parámetros
         db.execSQL("INSERT INTO Parametros (IdParametro,NombreParametro,IdFormula,TipoParametro,Medida,Minimo,Maximo) VALUES ('77','Urea','9','numero','mg','0','1000');");
 //Resultado

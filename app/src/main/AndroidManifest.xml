@@ -42,7 +42,8 @@
 
         <activity android:name=".QuienesSomos" />
         <activity android:name=".AcercaDe" />
-        <activity android:name=".SolicitarFormula"></activity>
+        <activity android:name=".SolicitarFormula" />
+        <activity android:name=".ReportarError"></activity>
     </application>
 
 </manifest>

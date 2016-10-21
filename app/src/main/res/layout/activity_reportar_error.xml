@@ -28,6 +28,19 @@
         android:gravity="center"
         android:orientation="horizontal"
         >
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/BtnReportarError"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:text="Reportar Error"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textColor="#fff"
+            android:background="@drawable/seleccion"
+            android:gravity="center"
+            />
 
 
 
@@ -47,10 +60,10 @@
         android:layout_below="@id/header"
         android:gravity="center" >
 
-        <TextView android:id="@+id/LblEtiqueta"
+        <TextView android:id="@+id/TxtTipoError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Creador: Alfonso Lacalle García"
+            android:text="Tipo de Error"
             android:background="#D5F8F8"
             android:textSize="20sp"
             android:shadowDx="3"
@@ -61,10 +74,28 @@
             android:layout_margin="10sp"
             android:typeface="monospace"/>
 
-        <TextView android:id="@+id/LblEtiqueta2"
+        <EditText
+            android:layout_width="300sp"
+            android:layout_height="30sp"
+            android:id="@+id/EtxTipoError"
+            android:layout_below="@+id/TxtTipoError"
+            android:background="#D5F8F8"
+            android:textSize="20sp"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:gravity="top"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_margin="10sp"
+            android:typeface="monospace"
+            />
+
+
+
+        <TextView android:id="@+id/TxtDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Correo electronico: correocontacto@doninio.com"
+            android:text="Descripción"
             android:background="#D5F8F8"
             android:textSize="20sp"
             android:shadowDx="3"
@@ -76,10 +107,11 @@
             android:typeface="monospace"/>
 
 
-        <TextView android:id="@+id/LblEtiqueta3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Telefono : XXXX"
+        <EditText
+            android:layout_width="300sp"
+            android:layout_height="100sp"
+            android:id="@+id/EtxDescripcion"
+            android:layout_below="@+id/TxtDescripcion"
             android:background="#D5F8F8"
             android:textSize="20sp"
             android:shadowDx="3"
@@ -88,7 +120,10 @@
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
             android:layout_margin="10sp"
-            android:typeface="monospace"/>
+            android:typeface="monospace"
+            />
+
+
 
 
 
@@ -104,3 +139,19 @@
 
 
 </RelativeLayout>
+
+
+    <!--
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:id="@+id/txtNombre"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="37dp" />
+
+
+    -->
